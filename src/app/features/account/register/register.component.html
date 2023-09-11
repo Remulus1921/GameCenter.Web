@@ -1,0 +1,9 @@
+<div class="content" role="main">
+  <h1>Register</h1>
+  <div>First Name: <input [(ngModel)]="registerDto.firstName"></div>
+  <div>Last Name: <input [(ngModel)]="registerDto.lastName"></div>
+  <div>Email: <input [(ngModel)]="registerDto.email"></div>
+  <div>Username: <input [(ngModel)]="registerDto.username"></div>
+  <div>Password: <input [(ngModel)]="registerDto.password"></div>
+  <button (click)="register(registerDto)">Register</button>
+</div>
