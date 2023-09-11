@@ -1,0 +1,37 @@
+<mat-toolbar class="mat-elevation-z6 navbar">
+  <a class="nav-title" routerLink="/">{{title}}</a>
+  <span class="fill-remaining-space"></span>
+
+  <a mat-button
+    routerLinkActive="menu-item-active"
+    [routerLinkActiveOptions]="{exact: true}"
+    routerLink="/">
+    <mat-icon>home</mat-icon> Home
+  </a>
+
+  <nav>
+    <a mat-button
+      routerLinkActive="menu-item-active"
+      routerLink="/login">
+      <mat-icon>security</mat-icon> Login
+    </a>
+    <a mat-button
+      routerLinkActive="menu-item-active"
+      routerLink="/register">
+      <mat-icon>call_made</mat-icon> Register
+    </a>
+  </nav>
+
+  <nav>
+    <a mat-button
+      routerLinkActive="menu-item-active"
+      routerLink="/games">
+      Games
+    </a>
+    <a mat-button
+      routerLinkActive="menu-item-active"
+      routerLink="/posts">
+      Posts
+    </a>
+  </nav>
+</mat-toolbar>
