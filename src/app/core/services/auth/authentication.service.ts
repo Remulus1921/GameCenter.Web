@@ -3,9 +3,9 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 
-import { JwtAuth } from "../../models/jwtAuth";
-import { Login } from "../../models/login";
-import { Register } from "../../models/register";
+import { JwtAuth } from "../../../models/user/jwtAuth";
+import { Login } from "../../../models/user/login";
+import { Register } from "../../../models/user/register";
 
 @Injectable({
   providedIn: 'root'
@@ -17,15 +17,12 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) { }
 
-  public register(user: Register): Observable<any> {
+  register(user: Register): Observable<any> {
     return this.http.post<any>(`${environment.apiUrl}/${this.registerUrl}`, user);
   }
 
-  public login(user: Login): Observable<JwtAuth> {
+  login(user: Login): Observable<JwtAuth> {
     return this.http.post<JwtAuth>(`${environment.apiUrl}/${this.loginUrl}`, user);
   }
 
-  // public refreshToken(refreshToken: string): Observable<JwtAuth> {
-  //   return this.http.post<JwtAuth>(`${environment.apiUrl}/${this.refreshTokenUrl}`, refreshToken)
-  // }
 }
