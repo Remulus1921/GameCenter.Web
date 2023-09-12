@@ -1,0 +1,31 @@
+<mat-form-field class="example-full-width block-input">
+  <mat-label for="platform-name">Nazwa Platformy</mat-label>
+  <input
+      matInput
+      #markInput="ngModel"
+      id="car-mark"
+      [placeholder]="platform.name ? '' : 'Nazwa'"
+      [value]="platform.name || ''"
+      [(ngModel)]="platform.name"
+      minlength="2"
+      maxlength="15"
+      required
+  />
+  <!-- <mat-error
+      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
+  >
+      {{
+          markInvalid
+              ? formErrors.markField
+              : "This field is required, minimum lenght must be at least 2 signs"
+      }}
+  </mat-error> -->
+</mat-form-field>
+<div class="controls">
+  <button class="block-button btn-add" mat-raised-button (click)="passPlatform()">
+      <mat-icon>add</mat-icon>{{ buttonText }}
+  </button>
+  <button class="block-button btn-back" mat-raised-button routerLink="/platform">
+      <mat-icon>keyboard_backspace</mat-icon>Back
+  </button>
+</div>

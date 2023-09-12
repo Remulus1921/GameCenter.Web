@@ -1,0 +1,10 @@
+<mat-card appearance="outlined">
+  <div class="header-display">
+    <h1>{{title}}</h1>
+  </div>
+  <app-platform-form
+    [(platform)]="platform"
+    [buttonText]="title"
+    (platformChange)="updatePlatform($event)">
+  </app-platform-form>
+</mat-card>
