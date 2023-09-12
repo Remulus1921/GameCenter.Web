@@ -13,8 +13,8 @@ import { LoginComponent } from "./login.component";
     CommonModule,
     LoginRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     MaterialModule,
-    FormsModule
   ]
 })
 export class LoginModule { }

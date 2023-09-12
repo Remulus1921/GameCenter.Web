@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
-import { AuthenticationService } from "src/app/core/services/authentication.service";
-import { JwtAuth } from "src/app/models/jwtAuth";
-import { Login } from "src/app/models/login";
+import { AuthenticationService } from "src/app/core/services/auth/authentication.service";
+import { JwtAuth } from "src/app/models/user/jwtAuth";
+import { Login } from "src/app/models/user/login";
 
 @Component({
   selector: 'app-login',
