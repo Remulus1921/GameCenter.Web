@@ -6,6 +6,7 @@ import { MaterialModule } from "../material.module";
 import { LoginModule } from "./account/login/login.module";
 import { RegisterModule } from "./account/register/register.module";
 import { FeaturesRoutingModule } from "./features-routing.module";
+import { GameModule } from "./game/game.module";
 import { PlatformModule } from "./platform/platform.module";
 
 
@@ -19,7 +20,8 @@ import { PlatformModule } from "./platform/platform.module";
     MaterialModule,
     LoginModule,
     RegisterModule,
-    PlatformModule
+    PlatformModule,
+    GameModule
   ]
 })
 export class FeaturesModule { }
