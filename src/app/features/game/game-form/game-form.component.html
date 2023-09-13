@@ -1,0 +1,198 @@
+<mat-form-field class="example-full-width block-input">
+  <mat-label for="game-name">Nazwa Gry</mat-label>
+  <input
+      matInput
+      #nameInput="ngModel"
+      id="car-mark"
+      [placeholder]="game.name ? '' : 'Nazwa'"
+      [value]="game.name || ''"
+      [(ngModel)]="game.name"
+      minlength="2"
+      maxlength="15"
+      required
+  />
+  <!-- <mat-error
+      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
+  >
+      {{
+          markInvalid
+              ? formErrors.markField
+              : "This field is required, minimum lenght must be at least 2 signs"
+      }}
+  </mat-error> -->
+</mat-form-field>
+
+<mat-form-field class="example-full-width block-input">
+  <mat-label for="game-type">Typ Gry</mat-label>
+  <input
+      matInput
+      #typeInput="ngModel"
+      id="game-type"
+      [placeholder]="game.gameType ? '' : 'Typ Gry'"
+      [value]="game.gameType || ''"
+      [(ngModel)]="game.gameType"
+      minlength="2"
+      maxlength="15"
+      required
+  />
+  <!-- <mat-error
+      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
+  >
+      {{
+          markInvalid
+              ? formErrors.markField
+              : "This field is required, minimum lenght must be at least 2 signs"
+      }}
+  </mat-error> -->
+</mat-form-field>
+
+<mat-form-field class="example-full-width block-input">
+  <mat-label for="game-desc">Opis Gry</mat-label>
+  <input
+      matInput
+      #descInput="ngModel"
+      id="game-desc"
+      [placeholder]="game.description ? '' : 'Opis'"
+      [value]="game.description || ''"
+      [(ngModel)]="game.description"
+      minlength="2"
+      maxlength="15"
+      required
+  />
+  <!-- <mat-error
+      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
+  >
+      {{
+          markInvalid
+              ? formErrors.markField
+              : "This field is required, minimum lenght must be at least 2 signs"
+      }}
+  </mat-error> -->
+</mat-form-field>
+
+<mat-form-field class="example-full-width block-input">
+  <mat-label for="game-studio">Producent Gry</mat-label>
+  <input
+      matInput
+      #studioInput="ngModel"
+      id="game-studio"
+      [placeholder]="game.studio ? '' : 'Producent'"
+      [value]="game.studio || ''"
+      [(ngModel)]="game.studio"
+      minlength="2"
+      maxlength="15"
+      required
+  />
+  <!-- <mat-error
+      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
+  >
+      {{
+          markInvalid
+              ? formErrors.markField
+              : "This field is required, minimum lenght must be at least 2 signs"
+      }}
+  </mat-error> -->
+</mat-form-field>
+
+<mat-form-field class="example-full-width block-input">
+  <mat-label for="game-rating">Kategoria Wiekowa Gry</mat-label>
+  <input
+      matInput
+      #ratingInput="ngModel"
+      id="game-rating"
+      [placeholder]="game.rating ? '' : 'Kategoria Wiekowa'"
+      [value]="game.rating || ''"
+      [(ngModel)]="game.rating"
+      minlength="2"
+      maxlength="15"
+      required
+  />
+  <!-- <mat-error
+      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
+  >
+      {{
+          markInvalid
+              ? formErrors.markField
+              : "This field is required, minimum lenght must be at least 2 signs"
+      }}
+  </mat-error> -->
+</mat-form-field>
+
+<mat-form-field class="example-full-width block-input">
+  <mat-label for="game-capacity">Rozmiar Gry</mat-label>
+  <input
+      matInput
+      type="number"
+      id="game-capacity"
+      [placeholder]="game.capacity ? '' : '0'"
+      [value]="game.capacity || ''"
+      [(ngModel)]="game.capacity"
+      required
+  />
+  <!-- <mat-error
+      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
+  >
+      {{
+          markInvalid
+              ? formErrors.markField
+              : "This field is required, minimum lenght must be at least 2 signs"
+      }}
+  </mat-error> -->
+</mat-form-field>
+
+<mat-form-field class="example-full-width block-input">
+  <mat-label for="game-image">Dodaj zdjęcie okładki gry</mat-label>
+  <input
+      matInput
+      #imageInput="ngModel"
+      id="game-image"
+      [placeholder]="game.imagePath ? '' : 'Dodaj zdjęcie'"
+      [value]="game.imagePath || ''"
+      [(ngModel)]="game.imagePath"
+      minlength="2"
+      maxlength="15"
+      required
+  />
+  <!-- <mat-error
+      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
+  >
+      {{
+          markInvalid
+              ? formErrors.markField
+              : "This field is required, minimum lenght must be at least 2 signs"
+      }}
+  </mat-error> -->
+</mat-form-field>
+
+<mat-form-field class="example-full-width block-input">
+  <mat-label for="game-platforms">Platformy</mat-label>
+  <input
+      matInput
+      #platformsInput="ngModel"
+      id="game-platforms"
+      [placeholder]="game.platforms ? '' : 'Na jakich platformach można zagrać w grę'"
+      [value]="game.platforms || ''"
+      [(ngModel)]="game.platforms"
+      minlength="2"
+      maxlength="15"
+      required
+  />
+  <!-- <mat-error
+      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
+  >
+      {{
+          markInvalid
+              ? formErrors.markField
+              : "This field is required, minimum lenght must be at least 2 signs"
+      }}
+  </mat-error> -->
+</mat-form-field>
+
+<div class="controls">
+  <button class="block-button btn-add" mat-raised-button (click)="passGame()">
+      <mat-icon>add</mat-icon>{{ buttonText }}
+  </button>
+  <button class="block-button btn-back" mat-raised-button routerLink="/game">
+      <mat-icon>keyboard_backspace</mat-icon>Back
+  </button>
+</div>

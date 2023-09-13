@@ -1,0 +1,20 @@
+<mat-card appearance="outlined">
+  <div class="header-display">
+    <h1>{{title}}</h1>
+
+    <button
+      mat-raised-button
+      routerLink="add"
+    >
+    <mat-icon>add</mat-icon>Dodaj Grę
+  </button>
+  </div>
+
+  <ol>
+    <li *ngFor="let game of games">
+      {{game.name}}
+      <button mat-raised-button routerLink="game/{{game.id}}">Edytuj</button>
+      <button mat-raised-button (click)="deleteGame(game.id)">Usuń</button>
+    </li>
+  </ol>
+</mat-card>

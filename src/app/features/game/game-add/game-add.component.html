@@ -1,0 +1,10 @@
+<mat-card appearance="outlined">
+  <div class="header-display">
+    <h1>{{title}}</h1>
+  </div>
+  <app-game-form
+    [(game)]="game"
+    [buttonText]="title"
+    (gameChange)="addGame($event)">
+  </app-game-form>
+</mat-card>
