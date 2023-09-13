@@ -18,7 +18,7 @@ export class PlatformEditComponent implements OnInit {
     private location: Location,
     private route: ActivatedRoute,
     private _platformService: PlatformService
-    ) {}
+  ) {}
 
   ngOnInit(): void {
     this.getPlatform();
