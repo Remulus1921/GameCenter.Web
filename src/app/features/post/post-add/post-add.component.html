@@ -1,0 +1,11 @@
+<mat-card appearance="outlined">
+  <div class="header-display">
+    <h1>{{title}}</h1>
+  </div>
+  <app-post-form
+    [(post)]="post"
+    [buttonText]="title"
+    (postChange)="addPost($event)">
+  </app-post-form>
+</mat-card>
+
