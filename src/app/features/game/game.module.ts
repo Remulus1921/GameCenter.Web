@@ -8,6 +8,7 @@ import { GameRoutingModule } from "./game-routing.module";
 import { GameAddComponent } from './game-add/game-add.component';
 import { GameFormComponent } from './game-form/game-form.component';
 import { GameEditComponent } from './game-edit/game-edit.component';
+import { GameDetailsComponent } from './game-details/game-details.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { GameEditComponent } from './game-edit/game-edit.component';
     GameListComponent,
     GameAddComponent,
     GameFormComponent,
-    GameEditComponent
+    GameEditComponent,
+    GameDetailsComponent
   ],
   imports: [
     CommonModule,
