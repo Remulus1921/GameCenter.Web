@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { PostAddUpdateDto, PostDto, PostSmallDto } from "src/app/models/post/postDto";
+import { PostAddUpdateDto, PostDto, PostSmallDto } from "src/app/models/post/postDtos";
 import { environment } from "src/environments/environment";
 
 @Injectable({

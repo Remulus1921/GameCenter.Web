@@ -8,6 +8,7 @@ import { RegisterModule } from "./account/register/register.module";
 import { FeaturesRoutingModule } from "./features-routing.module";
 import { GameModule } from "./game/game.module";
 import { PlatformModule } from "./platform/platform.module";
+import { PostModule } from "./post/post.module";
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { PlatformModule } from "./platform/platform.module";
     LoginModule,
     RegisterModule,
     PlatformModule,
-    GameModule
+    GameModule,
+    PostModule
   ]
 })
 export class FeaturesModule { }
