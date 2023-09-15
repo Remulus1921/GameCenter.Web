@@ -6,7 +6,7 @@ import { PlatformDto } from "src/app/models/platform/platformDto";
 @Component({
   selector: 'app-platform-add',
   templateUrl: './platform-add.component.html',
-  styleUrls: ['./platform-add.component.css']
+  styleUrls: ['./platform-add.component.scss']
 })
 export class PlatformAddComponent {
   title = "Dodaj Platformę";

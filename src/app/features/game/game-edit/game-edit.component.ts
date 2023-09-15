@@ -7,7 +7,7 @@ import { GameAddUpdateDto } from "src/app/models/game/gameDtos";
 @Component({
   selector: 'app-game-edit',
   templateUrl: './game-edit.component.html',
-  styleUrls: ['./game-edit.component.css']
+  styleUrls: ['./game-edit.component.scss']
 })
 export class GameEditComponent implements OnInit{
   title = "Edytuj Grę";

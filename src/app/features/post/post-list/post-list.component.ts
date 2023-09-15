@@ -5,7 +5,7 @@ import { PostSmallDto } from "src/app/models/post/postDtos";
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
-  styleUrls: ['./post-list.component.css']
+  styleUrls: ['./post-list.component.scss']
 })
 export class PostListComponent implements OnInit{
   title = "Posty";

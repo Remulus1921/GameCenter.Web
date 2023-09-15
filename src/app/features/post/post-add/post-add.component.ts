@@ -6,7 +6,7 @@ import { PostAddUpdateDto } from "src/app/models/post/postDtos";
 @Component({
   selector: 'app-post-add',
   templateUrl: './post-add.component.html',
-  styleUrls: ['./post-add.component.css']
+  styleUrls: ['./post-add.component.scss']
 })
 export class PostAddComponent {
   title = "Dodaj Nowy Post";

@@ -7,7 +7,7 @@ import { PlatformDto } from "src/app/models/platform/platformDto";
 @Component({
   selector: 'app-platform-edit',
   templateUrl: './platform-edit.component.html',
-  styleUrls: ['./platform-edit.component.css']
+  styleUrls: ['./platform-edit.component.scss']
 })
 export class PlatformEditComponent implements OnInit {
   title = "Edytuj Platformę";

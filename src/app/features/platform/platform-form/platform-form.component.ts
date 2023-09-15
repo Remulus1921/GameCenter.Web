@@ -4,7 +4,7 @@ import { PlatformDto } from "src/app/models/platform/platformDto";
 @Component({
   selector: 'app-platform-form',
   templateUrl: './platform-form.component.html',
-  styleUrls: ['./platform-form.component.css']
+  styleUrls: ['./platform-form.component.scss']
 })
 export class PlatformFormComponent {
   @Input() buttonText!: string;

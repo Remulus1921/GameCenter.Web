@@ -5,7 +5,7 @@ import { PlatformDto } from "src/app/models/platform/platformDto";
 @Component({
   selector: 'app-platform-list',
   templateUrl: './platform-list.component.html',
-  styleUrls: ['./platform-list.component.css']
+  styleUrls: ['./platform-list.component.scss']
 })
 export class PlatformListComponent implements OnInit{
   title = "Panel Platform";

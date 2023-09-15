@@ -6,7 +6,7 @@ import { GameAddUpdateDto } from "src/app/models/game/gameDtos";
 @Component({
   selector: 'app-game-add',
   templateUrl: './game-add.component.html',
-  styleUrls: ['./game-add.component.css']
+  styleUrls: ['./game-add.component.scss']
 })
 export class GameAddComponent {
   title = "Dodaj Nową Grę";
@@ -15,7 +15,9 @@ export class GameAddComponent {
   constructor(private _gameService: GameService, private location: Location) {}
 
   addGame(game: GameAddUpdateDto): void {
-    this._gameService.addGame(game).subscribe(() => this.goBack());
+    this._gameService.addGame(game).subscribe(() => {
+      this.goBack();
+    });
   }
 
   goBack(): void {
