@@ -21,11 +21,11 @@ export class GameService {
   }
 
   addGame(game: GameAddUpdateDto): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/${this.gameUrl}/addGame`, game);
+    return this.http.post(`${environment.apiUrl}/${this.gameUrl}/addGame`, game, {responseType: 'text'});
   }
 
   updateGame(id: string, game: GameAddUpdateDto): Observable<any> {
-    return this.http.put(`${environment.apiUrl}/${this.gameUrl}/${id}`, game);
+    return this.http.put(`${environment.apiUrl}/${this.gameUrl}/${id}`, game, {responseType: 'text'});
   }
 
   deleteGame(id: string): Observable<any> {

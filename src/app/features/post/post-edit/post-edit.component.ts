@@ -7,7 +7,7 @@ import { PostAddUpdateDto } from "src/app/models/post/postDtos";
 @Component({
   selector: 'app-post-edit',
   templateUrl: './post-edit.component.html',
-  styleUrls: ['./post-edit.component.css']
+  styleUrls: ['./post-edit.component.scss']
 })
 export class PostEditComponent implements OnInit{
   title = "Edytuj post";
@@ -21,7 +21,7 @@ export class PostEditComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.getPost();
   }
 
   getPost(): void {

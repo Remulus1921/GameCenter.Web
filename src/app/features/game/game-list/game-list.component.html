@@ -13,7 +13,7 @@
   <ol>
     <li *ngFor="let game of games">
       {{game.name}}
-      <button mat-raised-button routerLink="game/{{game.id}}">Edytuj</button>
+      <button mat-raised-button routerLink="edit/{{game.id}}">Edytuj</button>
       <button mat-raised-button (click)="deleteGame(game.id)">Usuń</button>
     </li>
   </ol>

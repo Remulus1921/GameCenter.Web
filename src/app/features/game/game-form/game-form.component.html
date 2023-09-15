@@ -164,29 +164,16 @@
   </mat-error> -->
 </mat-form-field>
 
-<mat-form-field class="example-full-width block-input">
-  <mat-label for="game-platforms">Platformy</mat-label>
-  <input
-      matInput
-      #platformsInput="ngModel"
-      id="game-platforms"
-      [placeholder]="game.platforms ? '' : 'Na jakich platformach można zagrać w grę'"
-      [value]="game.platforms || ''"
-      [(ngModel)]="game.platforms"
-      minlength="2"
-      maxlength="15"
-      required
-  />
-  <!-- <mat-error
-      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
-  >
-      {{
-          markInvalid
-              ? formErrors.markField
-              : "This field is required, minimum lenght must be at least 2 signs"
-      }}
-  </mat-error> -->
-</mat-form-field>
+<ng-select
+    [(ngModel)]="game.platforms"
+    [items]="platforms"
+    [multiple]="true"
+    bindLabel="name"
+    bindValue="name"
+    placeholder="Wybierz platformy"
+    [typeahead]="platformsInput$"
+>
+</ng-select>
 
 <div class="controls">
   <button class="block-button btn-add" mat-raised-button (click)="passGame()">

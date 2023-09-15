@@ -13,7 +13,7 @@ export class PostService {
   constructor(private http: HttpClient) { }
 
   getPosts(): Observable<PostSmallDto[]> {
-    return this.http.get<PostSmallDto[]>(`${environment.apiUrl}/$${this.postUrl}`);
+    return this.http.get<PostSmallDto[]>(`${environment.apiUrl}/${this.postUrl}`);
   }
 
   getPost(id: string): Observable<PostDto> {
@@ -21,11 +21,11 @@ export class PostService {
   }
 
   addPost(post: PostAddUpdateDto): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/${this.postUrl}`, post);
+    return this.http.post(`${environment.apiUrl}/${this.postUrl}`, post, {responseType: 'text'});
   }
 
   updatePost(id: string, post: PostAddUpdateDto): Observable<any> {
-    return this.http.put(`${environment.apiUrl}/${this.postUrl}/${id}`, post);
+    return this.http.put(`${environment.apiUrl}/${this.postUrl}/${id}`, post, {responseType: 'text'});
   }
 
   deletePost(id: string): Observable<any> {
