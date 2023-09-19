@@ -1,1 +1,78 @@
-<p>game-details works!</p>
+<mat-card appearance="outlined">
+  <div>
+    <button class="block-button btn-back" mat-raised-button routerLink="/game">
+      <mat-icon>keyboard_backspace</mat-icon>Powrót
+    </button>
+  </div>
+  <div>
+    <h1>{{game.name}}</h1>
+  </div>
+  <div>
+    <p>{{game.imagePath}}</p>
+    <div>
+      <p>Średnia ocena</p>
+      <p>{{avarageRate.avarageRate}}</p>
+      <p>Liczba ocen</p>
+      <p>{{avarageRate.amountOfRates}}</p>
+    </div>
+    <div *ngIf="userRate.gameRate != null">
+      <p>Twoja ocena</p>
+      <p>{{userRate.gameRate}}</p>
+    </div>
+    <div *ngIf="userRate.gameRate == null">
+
+      <mat-form-field>
+        <mat-label for="rate">Dodaj ocenę!</mat-label>
+        <input
+          matInput
+          type="number"
+          [placeholder]="rate.gameRate ? '' : '0'"
+          [value]="rate.gameRate || ''"
+          [(ngModel)]="rate.gameRate"
+        />
+      </mat-form-field>
+
+      <button mat-raised-button (click)="addRate()">Oceń</button>
+    </div>
+  </div>
+  <div>
+    <h4>Platformy na których dostępna jest gra</h4>
+    <ul>
+      <li *ngFor="let platform of game.platformsName">
+        <p>{{platform}}</p>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <div>
+      <h1>Komentarze</h1>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label for="comment">Napisz komentarz</mat-label>
+        <input
+          matInput
+          #commentInput="ngModel"
+          [placeholder]="newComment.commentContent ? '' : 'Treść'"
+          [value]="newComment.commentContent || ''"
+          [(ngModel)]="newComment.commentContent"
+          type="text"
+          id="comment"
+        />
+      </mat-form-field>
+      <button mat-raised-button (click)="addComment()">Dodaj komentarz!</button>
+    </div>
+    <div *ngFor="let comment of game.comments">
+      <div *ngIf="comment.parentId == null">
+        <h3>{{comment.userName}}</h3>
+        <h4>{{comment.commentContent}}</h4>
+
+        <mat-label for="reply">Odpowiedź</mat-label>
+        <input
+          matInput
+          type="text"
+          id="reply"/>
+      </div>
+    </div>
+  </div>
+</mat-card>

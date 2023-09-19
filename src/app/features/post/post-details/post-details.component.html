@@ -1,0 +1,33 @@
+<mat-card appearance="outlined">
+  <div>
+    <h1>{{post.title}}</h1>
+    <div *ngIf="post.created == post.modified">
+      <p>Dodano {{post.created}}</p>
+    </div>
+    <div *ngIf="post.created != post.modified">
+      <p>Dodano {{post.created}}</p>
+      <p>Zmodyfikowano {{post.modified}}</p>
+    </div>
+  </div>
+
+  <div>
+    <p>{{post.imagePath}}</p>
+  </div>
+
+  <div>
+    <ul>
+      <li *ngFor="let platform of post.platforms">
+        <p>{{platform}}</p>
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <p>{{post.content}}</p>
+  </div>
+  <div>
+    <button class="block-button btn-back" mat-raised-button routerLink="/post">
+      <mat-icon>keyboard_backspace</mat-icon>Powrót
+    </button>
+  </div>
+</mat-card>
