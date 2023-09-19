@@ -1,4 +1,5 @@
 export interface CommentSmallDto {
+  id: string | null;
   commentContent: string;
   parentId: string | null;
 }

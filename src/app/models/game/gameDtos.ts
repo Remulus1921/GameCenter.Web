@@ -1,4 +1,4 @@
-import { CommentSmallDto } from "../comment/commentDtos";
+import { CommentDto } from "../comment/commentDtos";
 
 export interface GameAddUpdateDto {
   name: string;
@@ -22,7 +22,7 @@ export interface GameDto {
   imagePath: string;
   platformsName: string[];
   gameRates: number[];
-  comments: CommentSmallDto[];
+  comments: CommentDto[];
 }
 
 export interface GameSmallDto {
