@@ -9,6 +9,7 @@ import { PostEditComponent } from "./post-edit/post-edit.component";
 import { PostFormComponent } from "./post-form/post-form.component";
 import { PostListComponent } from "./post-list/post-list.component";
 import { PostRoutingModule } from "./post-routing.module";
+import { PostDetailsComponent } from './post-details/post-details.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { PostRoutingModule } from "./post-routing.module";
     PostListComponent,
     PostAddComponent,
     PostFormComponent,
-    PostEditComponent
+    PostEditComponent,
+    PostDetailsComponent
   ],
   imports: [
     CommonModule,
