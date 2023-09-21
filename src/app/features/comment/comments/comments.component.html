@@ -1,0 +1,21 @@
+<div>
+  <h3>Komentarze</h3>
+  <div>Napisz komentarz</div>
+  <comment-form
+    submitLabel="Napisz"
+    (handleSubmit)="addComment({ text: $event, parentId: null })"
+  ></comment-form>
+  <div>
+    <comment
+      *ngFor="let comment of mainComments"
+      [comment]="comment"
+      [currentUserEmail]="currentUserEmail"
+      [replies]="getReplies(comment.id)"
+      (setActiveComment)="setActiveComment($event)"
+      [activeComment]="activeComment"
+      (addComment)="addComment($event)"
+      (updateComment)="updateComment($event)"
+      (deleteComment)="deleteComment($event)"
+    ></comment>
+  </div>
+</div>
