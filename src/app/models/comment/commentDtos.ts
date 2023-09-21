@@ -8,6 +8,7 @@ export interface CommentDto {
   id: string;
   commentContent: string;
   userName: string;
+  userEmail: string;
   creationDate: Date;
   modificationDate: Date;
   parentId: string | null;
