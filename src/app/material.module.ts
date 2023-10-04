@@ -6,6 +6,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { DropzoneMaterialModule } from "@ngx-dropzone/material";
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { MatToolbarModule } from "@angular/material/toolbar";
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    DropzoneMaterialModule,
   ],
   exports: [
     MatToolbarModule,
@@ -24,7 +26,8 @@ import { MatToolbarModule } from "@angular/material/toolbar";
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    DropzoneMaterialModule,
   ],
 })
 export class MaterialModule {}
