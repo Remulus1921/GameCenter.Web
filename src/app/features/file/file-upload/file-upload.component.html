@@ -1,0 +1,16 @@
+<div
+  class="custom-dropzone"
+  ngx-dropzone
+  [accept]="'image/*'"
+  (change)="onSelect($event)"
+>
+  <ngx-dropzone-label>Dodaj zdjęcie</ngx-dropzone-label>
+  <ngx-dropzone-image-preview
+    ngProjectAs="ngx-dropzone-preview"
+    [removable]="true"
+    *ngFor="let f of files"
+    [file]="f"
+    (removed)="onRemove(f)"
+  >
+  </ngx-dropzone-image-preview>
+</div>
