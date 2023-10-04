@@ -21,8 +21,10 @@
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
     "@ng-select/ng-select": "^11.1.1",
+    "@ngx-dropzone/material": "^16.1.1",
     "@ngx-loading-bar/http-client": "^6.0.2",
     "jwt-decode": "^3.1.2",
+    "ngx-dropzone": "^3.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
