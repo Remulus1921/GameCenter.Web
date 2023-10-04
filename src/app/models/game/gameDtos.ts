@@ -7,7 +7,7 @@ export interface GameAddUpdateDto {
   studio: string;
   rating: string;
   capacity: number;
-  imagePath: string;
+  image: File;
   platforms: string[];
 }
 
@@ -19,7 +19,7 @@ export interface GameDto {
   studio: string;
   rating: string;
   capacity: number;
-  imagePath: string;
+  image: File;
   platformsName: string[];
   gameRates: number[];
   comments: CommentDto[];
@@ -30,5 +30,5 @@ export interface GameSmallDto {
   name: string;
   gameType: string;
   rating: string;
-  imagePath: string;
+  image: File;
 }

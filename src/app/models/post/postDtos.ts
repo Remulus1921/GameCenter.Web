@@ -3,7 +3,7 @@ export interface PostDto {
   content: string;
   created: Date;
   modified: Date;
-  imagePath: string | null;
+  image: File | null;
   userName: string;
   platforms: string[];
 }
@@ -11,7 +11,7 @@ export interface PostDto {
 export interface PostAddUpdateDto {
   title: string;
   content: string;
-  imagePath: string | null;
+  image: File | null;
   platforms: string[];
 }
 
@@ -20,6 +20,6 @@ export interface PostSmallDto {
   title: string;
   created: Date;
   modified: Date;
-  imagePath: string | null;
+  image: File | null;
   platforms: string[];
 }
