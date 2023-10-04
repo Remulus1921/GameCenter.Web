@@ -5,22 +5,21 @@
     </button>
   </div>
   <div>
-    <h1>{{game.name}}</h1>
+    <h1>{{ game.name }}</h1>
   </div>
   <div>
-    <p>{{game.imagePath}}</p>
+    <p>{{ game.image }}</p>
     <div>
       <p>Średnia ocena</p>
-      <p>{{avarageRate.avarageRate}}</p>
+      <p>{{ avarageRate.avarageRate }}</p>
       <p>Liczba ocen</p>
-      <p>{{avarageRate.amountOfRates}}</p>
+      <p>{{ avarageRate.amountOfRates }}</p>
     </div>
     <div *ngIf="userRate.gameRate != null">
       <p>Twoja ocena</p>
-      <p>{{userRate.gameRate}}</p>
+      <p>{{ userRate.gameRate }}</p>
     </div>
     <div *ngIf="userRate.gameRate == null">
-
       <mat-form-field>
         <mat-label for="rate">Dodaj ocenę!</mat-label>
         <input
@@ -39,7 +38,7 @@
     <h4>Platformy na których dostępna jest gra</h4>
     <ul>
       <li *ngFor="let platform of game.platformsName">
-        <p>{{platform}}</p>
+        <p>{{ platform }}</p>
       </li>
     </ul>
   </div>

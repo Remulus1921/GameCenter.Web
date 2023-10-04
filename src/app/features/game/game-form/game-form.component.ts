@@ -7,9 +7,9 @@ import { PlatformDto } from "src/app/models/platform/platformDto";
 @Component({
   selector: 'app-game-form',
   templateUrl: './game-form.component.html',
-  styleUrls: ['./game-form.component.scss']
+  styleUrls: ['./game-form.component.scss'],
 })
-export class GameFormComponent implements OnInit{
+export class GameFormComponent implements OnInit {
   @Input() buttonText!: string;
   @Input() game!: GameAddUpdateDto;
   @Output() gameChange = new EventEmitter<GameAddUpdateDto>();
@@ -30,6 +30,11 @@ export class GameFormComponent implements OnInit{
   getPlatformList(): void {
     this._platformService.getPlatforms().subscribe((platforms) => {
       this.platforms = platforms;
-    })
+    });
+  }
+
+  onFileSelected(selectedFile: File): void {
+    this.game.image = selectedFile;
+    console.log(selectedFile);
   }
 }

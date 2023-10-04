@@ -7,10 +7,10 @@ import { GameAddUpdateDto } from "src/app/models/game/gameDtos";
 @Component({
   selector: 'app-game-edit',
   templateUrl: './game-edit.component.html',
-  styleUrls: ['./game-edit.component.scss']
+  styleUrls: ['./game-edit.component.scss'],
 })
-export class GameEditComponent implements OnInit{
-  title = "Edytuj Grę";
+export class GameEditComponent implements OnInit {
+  title = 'Edytuj Grę';
   id!: string;
   @Input() game: GameAddUpdateDto = {} as GameAddUpdateDto;
 
@@ -34,7 +34,7 @@ export class GameEditComponent implements OnInit{
       this.game.rating = game.rating;
       this.game.platforms = game.platformsName;
       this.game.studio = game.studio;
-      this.game.imagePath = game.imagePath;
+      this.game.image = game.image;
     });
   }
 

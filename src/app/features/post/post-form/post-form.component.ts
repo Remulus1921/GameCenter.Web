@@ -7,9 +7,9 @@ import { PostAddUpdateDto } from "src/app/models/post/postDtos";
 @Component({
   selector: 'app-post-form',
   templateUrl: './post-form.component.html',
-  styleUrls: ['./post-form.component.scss']
+  styleUrls: ['./post-form.component.scss'],
 })
-export class PostFormComponent implements OnInit{
+export class PostFormComponent implements OnInit {
   @Input() buttonText!: string;
   @Input() post!: PostAddUpdateDto;
   @Output() postChange = new EventEmitter<PostAddUpdateDto>();
@@ -30,6 +30,10 @@ export class PostFormComponent implements OnInit{
   getPlatformList(): void {
     this._platformService.getPlatforms().subscribe((platforms) => {
       this.platforms = platforms;
-    })
+    });
+  }
+
+  onFileSelected(selectedFile: File): void {
+    this.post.image = selectedFile;
   }
 }

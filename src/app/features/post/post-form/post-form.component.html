@@ -1,15 +1,15 @@
 <mat-form-field class="example-full-width block-input">
   <mat-label for="post-title">Tytuł Posta</mat-label>
   <input
-      matInput
-      #titleInput="ngModel"
-      id="post-title"
-      [placeholder]="post.title ? '' : 'Title'"
-      [value]="post.title || ''"
-      [(ngModel)]="post.title"
-      minlength="2"
-      maxlength="15"
-      required
+    matInput
+    #titleInput="ngModel"
+    id="post-title"
+    [placeholder]="post.title ? '' : 'Title'"
+    [value]="post.title || ''"
+    [(ngModel)]="post.title"
+    minlength="2"
+    maxlength="15"
+    required
   />
   <!-- <mat-error
       *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
@@ -25,14 +25,14 @@
 <mat-form-field class="example-full-width block-input">
   <mat-label for="post-content">Treść Posta</mat-label>
   <input
-      matInput
-      #contentInput="ngModel"
-      id="post-content"
-      [placeholder]="post.content ? '' : 'Treść'"
-      [value]="post.content || ''"
-      [(ngModel)]="post.content"
-      minlength="2"
-      required
+    matInput
+    #contentInput="ngModel"
+    id="post-content"
+    [placeholder]="post.content ? '' : 'Treść'"
+    [value]="post.content || ''"
+    [(ngModel)]="post.content"
+    minlength="2"
+    required
   />
   <!-- <mat-error
       *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
@@ -45,46 +45,24 @@
   </mat-error> -->
 </mat-form-field>
 
-<mat-form-field class="example-full-width block-input">
-  <mat-label for="post-image">Zdjęcie Do Posta</mat-label>
-  <input
-      matInput
-      #imageInput="ngModel"
-      id="post-image"
-      [placeholder]="post.imagePath ? '' : 'Możesz dodać zdjęcie do tego Posta'"
-      [value]="post.imagePath || ''"
-      [(ngModel)]="post.imagePath"
-      minlength="2"
-      maxlength="15"
-  />
-  <!-- <mat-error
-      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
-  >
-      {{
-          markInvalid
-              ? formErrors.markField
-              : "This field is required, minimum lenght must be at least 2 signs"
-      }}
-  </mat-error> -->
-</mat-form-field>
+<file-upload (fileSelected)="onFileSelected($event)"></file-upload>
 
 <ng-select
-    [(ngModel)]="post.platforms"
-    [items]="platforms"
-    [multiple]="true"
-    bindLabel="name"
-    bindValue="name"
-    placeholder="Wybierz platformy"
-    [typeahead]="platformsInput$"
+  [(ngModel)]="post.platforms"
+  [items]="platforms"
+  [multiple]="true"
+  bindLabel="name"
+  bindValue="name"
+  placeholder="Wybierz platformy"
+  [typeahead]="platformsInput$"
 >
 </ng-select>
 
 <div class="controls">
   <button class="block-button btn-add" mat-raised-button (click)="passPost()">
-      <mat-icon>add</mat-icon>{{ buttonText }}
+    <mat-icon>add</mat-icon>{{ buttonText }}
   </button>
   <button class="block-button btn-back" mat-raised-button routerLink="/post">
-      <mat-icon>keyboard_backspace</mat-icon>Back
+    <mat-icon>keyboard_backspace</mat-icon>Back
   </button>
 </div>
-

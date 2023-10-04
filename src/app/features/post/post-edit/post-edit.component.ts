@@ -7,10 +7,10 @@ import { PostAddUpdateDto } from "src/app/models/post/postDtos";
 @Component({
   selector: 'app-post-edit',
   templateUrl: './post-edit.component.html',
-  styleUrls: ['./post-edit.component.scss']
+  styleUrls: ['./post-edit.component.scss'],
 })
-export class PostEditComponent implements OnInit{
-  title = "Edytuj post";
+export class PostEditComponent implements OnInit {
+  title = 'Edytuj post';
   id!: string;
   @Input() post: PostAddUpdateDto = {} as PostAddUpdateDto;
 
@@ -29,7 +29,7 @@ export class PostEditComponent implements OnInit{
     this._postService.getPost(this.id).subscribe((post) => {
       this.post.title = post.title;
       this.post.content = post.content;
-      this.post.imagePath = post.imagePath;
+      this.post.image = post.image;
       this.post.platforms = post.platforms;
     });
   }
