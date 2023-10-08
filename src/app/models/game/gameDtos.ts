@@ -1,4 +1,5 @@
-import { CommentDto } from "../comment/commentDtos";
+import { CommentDto } from '../comment/commentDtos';
+import { FileDto } from '../file/fileDtos';
 
 export interface GameAddUpdateDto {
   name: string;
@@ -7,7 +8,6 @@ export interface GameAddUpdateDto {
   studio: string;
   rating: string;
   capacity: number;
-  image: File;
   platforms: string[];
 }
 
@@ -19,8 +19,8 @@ export interface GameDto {
   studio: string;
   rating: string;
   capacity: number;
-  image: File;
   platformsName: string[];
+  image: FileDto;
   gameRates: number[];
   comments: CommentDto[];
 }
@@ -30,5 +30,5 @@ export interface GameSmallDto {
   name: string;
   gameType: string;
   rating: string;
-  image: File;
+  image: FileDto;
 }
