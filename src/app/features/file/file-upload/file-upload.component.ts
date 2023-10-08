@@ -1,13 +1,20 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss'],
 })
-export class FileUploadComponent {
+export class FileUploadComponent implements OnInit {
+  @Input() image!: File;
   @Output() fileSelected = new EventEmitter<File>();
   files: File[] = [];
+
+  ngOnInit(): void {
+    if (this.image instanceof Blob) {
+      this.files.push(this.image);
+    }
+  }
 
   onSelect(event: any) {
     this.files = [];
