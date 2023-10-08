@@ -1,8 +1,8 @@
-import { Location } from "@angular/common";
-import { Component, Input, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { PostService } from "src/app/core/services/post/post.service";
-import { PostAddUpdateDto } from "src/app/models/post/postDtos";
+import { Location } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { PostService } from 'src/app/core/services/post/post.service';
+import { PostAddUpdateDto } from 'src/app/models/post/postDtos';
 
 @Component({
   selector: 'app-post-edit',
@@ -29,7 +29,7 @@ export class PostEditComponent implements OnInit {
     this._postService.getPost(this.id).subscribe((post) => {
       this.post.title = post.title;
       this.post.content = post.content;
-      this.post.image = post.image;
+      //this.post.image = post.image;
       this.post.platforms = post.platforms;
     });
   }
