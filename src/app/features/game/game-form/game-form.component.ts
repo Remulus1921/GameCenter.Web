@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { Subject } from "rxjs";
-import { PlatformService } from "src/app/core/services/platform/platform.service";
-import { GameAddUpdateDto } from "src/app/models/game/gameDtos";
-import { PlatformDto } from "src/app/models/platform/platformDto";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Subject } from 'rxjs';
+import { PlatformService } from 'src/app/core/services/platform/platform.service';
+import { GameAddUpdateDto } from 'src/app/models/game/gameDtos';
+import { PlatformDto } from 'src/app/models/platform/platformDto';
 
 @Component({
   selector: 'app-game-form',
@@ -11,8 +11,11 @@ import { PlatformDto } from "src/app/models/platform/platformDto";
 })
 export class GameFormComponent implements OnInit {
   @Input() buttonText!: string;
-  @Input() game!: GameAddUpdateDto;
-  @Output() gameChange = new EventEmitter<GameAddUpdateDto>();
+  @Input() gameForm!: { game: GameAddUpdateDto; image: File };
+  @Output() gameChange = new EventEmitter<{
+    game: GameAddUpdateDto;
+    image: File;
+  }>();
 
   platforms!: PlatformDto[];
   platformsInput$ = new Subject<string>();
@@ -24,7 +27,10 @@ export class GameFormComponent implements OnInit {
   }
 
   passGame(): void {
-    this.gameChange.emit(this.game);
+    this.gameChange.emit({
+      game: this.gameForm.game,
+      image: this.gameForm.image,
+    });
   }
 
   getPlatformList(): void {
@@ -34,7 +40,6 @@ export class GameFormComponent implements OnInit {
   }
 
   onFileSelected(selectedFile: File): void {
-    this.game.image = selectedFile;
-    console.log(selectedFile);
+    this.gameForm.image = selectedFile;
   }
 }

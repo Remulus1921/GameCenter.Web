@@ -4,9 +4,9 @@
     matInput
     #nameInput="ngModel"
     id="game-name"
-    [placeholder]="game.name ? '' : 'Nazwa'"
-    [value]="game.name || ''"
-    [(ngModel)]="game.name"
+    [placeholder]="gameForm.game.name ? '' : 'Nazwa'"
+    [value]="gameForm.game.name || ''"
+    [(ngModel)]="gameForm.game.name"
     minlength="2"
     maxlength="15"
     required
@@ -28,9 +28,9 @@
     matInput
     #typeInput="ngModel"
     id="game-type"
-    [placeholder]="game.gameType ? '' : 'Typ Gry'"
-    [value]="game.gameType || ''"
-    [(ngModel)]="game.gameType"
+    [placeholder]="gameForm.game.gameType ? '' : 'Typ Gry'"
+    [value]="gameForm.game.gameType || ''"
+    [(ngModel)]="gameForm.game.gameType"
     minlength="2"
     maxlength="15"
     required
@@ -52,9 +52,9 @@
     matInput
     #descInput="ngModel"
     id="game-desc"
-    [placeholder]="game.description ? '' : 'Opis'"
-    [value]="game.description || ''"
-    [(ngModel)]="game.description"
+    [placeholder]="gameForm.game.description ? '' : 'Opis'"
+    [value]="gameForm.game.description || ''"
+    [(ngModel)]="gameForm.game.description"
     minlength="2"
     maxlength="15"
     required
@@ -76,9 +76,9 @@
     matInput
     #studioInput="ngModel"
     id="game-studio"
-    [placeholder]="game.studio ? '' : 'Producent'"
-    [value]="game.studio || ''"
-    [(ngModel)]="game.studio"
+    [placeholder]="gameForm.game.studio ? '' : 'Producent'"
+    [value]="gameForm.game.studio || ''"
+    [(ngModel)]="gameForm.game.studio"
     minlength="2"
     maxlength="15"
     required
@@ -100,9 +100,9 @@
     matInput
     #ratingInput="ngModel"
     id="game-rating"
-    [placeholder]="game.rating ? '' : 'Kategoria Wiekowa'"
-    [value]="game.rating || ''"
-    [(ngModel)]="game.rating"
+    [placeholder]="gameForm.game.rating ? '' : 'Kategoria Wiekowa'"
+    [value]="gameForm.game.rating || ''"
+    [(ngModel)]="gameForm.game.rating"
     minlength="2"
     maxlength="15"
     required
@@ -124,9 +124,9 @@
     matInput
     type="number"
     id="game-capacity"
-    [placeholder]="game.capacity ? '' : '0'"
-    [value]="game.capacity || ''"
-    [(ngModel)]="game.capacity"
+    [placeholder]="gameForm.game.capacity ? '' : '0'"
+    [value]="gameForm.game.capacity || ''"
+    [(ngModel)]="gameForm.game.capacity"
     required
   />
   <!-- <mat-error
@@ -140,7 +140,11 @@
   </mat-error> -->
 </mat-form-field>
 
-<file-upload (fileSelected)="onFileSelected($event)"></file-upload>
+<file-upload
+  *ngIf="gameForm.image"
+  [image]="gameForm.image"
+  (fileSelected)="onFileSelected($event)"
+></file-upload>
 
 <!-- <mat-form-field class="example-full-width block-input">
   <mat-label for="game-image">Dodaj zdjęcie okładki gry</mat-label>
@@ -167,7 +171,7 @@
 <!-- </mat-form-field> -->
 
 <ng-select
-  [(ngModel)]="game.platforms"
+  [(ngModel)]="gameForm.game.platforms"
   [items]="platforms"
   [multiple]="true"
   bindLabel="name"

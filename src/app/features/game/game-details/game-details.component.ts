@@ -1,22 +1,23 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import jwt_decode from "jwt-decode";
-import { CommentService } from "src/app/core/services/comment/comment.service";
-import { GameService } from "src/app/core/services/game/game.service";
-import { RateService } from "src/app/core/services/rate/rate.service";
-import { CommentSmallDto } from "src/app/models/comment/commentDtos";
-import { GameDto } from "src/app/models/game/gameDtos";
-import { RateDto, RateSmallDto } from "src/app/models/rate/rateDtos";
-
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import jwt_decode from 'jwt-decode';
+import { createFileFromDto } from 'src/app/core/methods/file-methods';
+import { CommentService } from 'src/app/core/services/comment/comment.service';
+import { GameService } from 'src/app/core/services/game/game.service';
+import { RateService } from 'src/app/core/services/rate/rate.service';
+import { CommentSmallDto } from 'src/app/models/comment/commentDtos';
+import { GameDto } from 'src/app/models/game/gameDtos';
+import { RateDto, RateSmallDto } from 'src/app/models/rate/rateDtos';
 
 @Component({
   selector: 'app-game-details',
   templateUrl: './game-details.component.html',
-  styleUrls: ['./game-details.component.scss']
+  styleUrls: ['./game-details.component.scss'],
 })
-export class GameDetailsComponent implements OnInit{
+export class GameDetailsComponent implements OnInit, OnDestroy {
   game: GameDto = {} as GameDto;
-  id: string = String(this.route.snapshot.paramMap.get('id'))
+  id: string = String(this.route.snapshot.paramMap.get('id'));
+  imageUrl!: string;
   avarageRate: RateDto = {} as RateDto;
   userRate: RateSmallDto = {} as RateSmallDto;
   newComment: CommentSmallDto = {} as CommentSmallDto;
@@ -29,7 +30,7 @@ export class GameDetailsComponent implements OnInit{
     private _gameService: GameService,
     private _rateService: RateService,
     private _commentService: CommentService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -39,32 +40,46 @@ export class GameDetailsComponent implements OnInit{
     this.getUserEmail();
   }
 
+  ngOnDestroy(): void {
+    if (this.imageUrl) {
+      URL.revokeObjectURL(this.imageUrl);
+    }
+  }
+
   getGameDetails(): void {
     this._gameService.getGame(this.id).subscribe((game) => {
       this.game = game;
+      this.imageUrl = URL.createObjectURL(createFileFromDto(game.image));
     });
   }
 
   getAvarageRate(): void {
-    this._rateService.getGameAvarageRate(this.id).subscribe((avarageRate) => this.avarageRate = avarageRate);
+    this._rateService
+      .getGameAvarageRate(this.id)
+      .subscribe((avarageRate) => (this.avarageRate = avarageRate));
   }
 
   getUserRate(): void {
-    this._rateService.getUserRate(this.id).subscribe((rate) => this.userRate = rate);
+    this._rateService
+      .getUserRate(this.id)
+      .subscribe((rate) => (this.userRate = rate));
   }
 
   addRate(): void {
-    this._rateService.addRate(this.id, this.rate).subscribe(() => this.getUserRate());
+    this._rateService
+      .addRate(this.id, this.rate)
+      .subscribe(() => this.getUserRate());
   }
 
   updateRate(): void {
-    this._rateService.updateRate(this.id, this.rate).subscribe(() => this.getUserRate());
+    this._rateService
+      .updateRate(this.id, this.rate)
+      .subscribe(() => this.getUserRate());
   }
 
   getUserEmail(): void {
-    this.token = localStorage.getItem("jwtToken");
-    this.decodedToken= jwt_decode(this.token as string);
+    this.token = localStorage.getItem('jwtToken');
+    this.decodedToken = jwt_decode(this.token as string);
     this.email = this.decodedToken.email;
   }
-
 }

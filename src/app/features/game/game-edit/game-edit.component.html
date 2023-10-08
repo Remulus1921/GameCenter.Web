@@ -1,11 +1,13 @@
 <mat-card appearance="outlined">
   <div class="header-display">
-    <h1>{{title}}</h1>
+    <h1>{{ title }}</h1>
   </div>
-  <app-game-form
-    [(game)]="game"
-    [buttonText]="title"
-    (gameChange)="updateGame($event)">
-  </app-game-form>
-
+  <div *ngIf="isImageEmpty()">
+    <app-game-form
+      [gameForm]="{ game: game, image: image }"
+      [buttonText]="title"
+      (gameChange)="updateGame($event)"
+    >
+    </app-game-form>
+  </div>
 </mat-card>
