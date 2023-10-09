@@ -67,7 +67,6 @@ export class GameEditComponent implements OnInit {
     if (this.image && this.image.size > 0) {
       return true;
     }
-
     return false;
   }
 }

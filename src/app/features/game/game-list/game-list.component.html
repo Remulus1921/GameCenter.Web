@@ -8,7 +8,7 @@
   </div>
 
   <ol>
-    <li *ngFor="let game of games; let i = index">
+    <li *ngFor="let game of games">
       <img [src]="game.imageUrl" alt="Okładka" width="150" height="200" />
       {{ game.game.name }}
       <button mat-raised-button routerLink="details/{{ game.game.id }}">
