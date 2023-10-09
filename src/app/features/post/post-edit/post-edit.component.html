@@ -1,11 +1,13 @@
 <mat-card appearance="outlined">
   <div class="header-display">
-    <h1>{{title}}</h1>
+    <h1>{{ title }}</h1>
   </div>
-  <app-post-form
-    [(post)]="post"
-    [buttonText]="title"
-    (postChange)="updatePost($event)">
-  </app-post-form>
-
+  <div *ngIf="isImageEmpty()">
+    <app-post-form
+      [postForm]="{ post: post, image: image }"
+      [buttonText]="title"
+      (postChange)="updatePost($event)"
+    >
+    </app-post-form>
+  </div>
 </mat-card>

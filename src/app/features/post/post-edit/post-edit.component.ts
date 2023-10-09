@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { createFileFromDto } from 'src/app/core/methods/file-methods';
 import { PostService } from 'src/app/core/services/post/post.service';
 import { PostAddUpdateDto } from 'src/app/models/post/postDtos';
 
@@ -12,7 +13,8 @@ import { PostAddUpdateDto } from 'src/app/models/post/postDtos';
 export class PostEditComponent implements OnInit {
   title = 'Edytuj post';
   id!: string;
-  @Input() post: PostAddUpdateDto = {} as PostAddUpdateDto;
+  post: PostAddUpdateDto = {} as PostAddUpdateDto;
+  image: File | null = {} as File;
 
   constructor(
     private _postService: PostService,
@@ -29,13 +31,42 @@ export class PostEditComponent implements OnInit {
     this._postService.getPost(this.id).subscribe((post) => {
       this.post.title = post.title;
       this.post.content = post.content;
-      //this.post.image = post.image;
       this.post.platforms = post.platforms;
+
+      if (post.image != null) this.image = createFileFromDto(post.image);
+      else if (post.image == null) this.image = null;
     });
   }
 
-  updatePost(post: PostAddUpdateDto): void {
-    this._postService.updatePost(this.id, post).subscribe(() => this.goBack());
+  updatePost({
+    post,
+    image,
+  }: {
+    post: PostAddUpdateDto;
+    image: File | null;
+  }): void {
+    const formData = new FormData();
+
+    if (image != null) formData.append('image', image, image.name);
+
+    formData.append('title', post.title);
+    formData.append('content', post.content);
+    post.platforms.forEach((platform) => {
+      formData.append('platforms', platform);
+    });
+
+    this._postService
+      .updatePost(this.id, formData)
+      .subscribe(() => this.goBack());
+  }
+
+  isImageEmpty(): boolean {
+    if (this.image == null) return true;
+
+    if (this.image && this.image.size > 0) {
+      return true;
+    }
+    return false;
   }
 
   goBack(): void {

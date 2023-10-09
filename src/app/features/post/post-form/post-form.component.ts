@@ -11,8 +11,11 @@ import { PostAddUpdateDto } from 'src/app/models/post/postDtos';
 })
 export class PostFormComponent implements OnInit {
   @Input() buttonText!: string;
-  @Input() post!: PostAddUpdateDto;
-  @Output() postChange = new EventEmitter<PostAddUpdateDto>();
+  @Input() postForm!: { post: PostAddUpdateDto; image: File | null };
+  @Output() postChange = new EventEmitter<{
+    post: PostAddUpdateDto;
+    image: File | null;
+  }>();
 
   platforms!: PlatformDto[];
   platformsInput$ = new Subject<string>();
@@ -24,7 +27,10 @@ export class PostFormComponent implements OnInit {
   }
 
   passPost(): void {
-    this.postChange.emit(this.post);
+    this.postChange.emit({
+      post: this.postForm.post,
+      image: this.postForm.image,
+    });
   }
 
   getPlatformList(): void {
@@ -34,6 +40,6 @@ export class PostFormComponent implements OnInit {
   }
 
   onFileSelected(selectedFile: File): void {
-    //this.post.image = selectedFile;
+    this.postForm.image = selectedFile;
   }
 }

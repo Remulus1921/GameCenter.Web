@@ -4,11 +4,10 @@
     matInput
     #titleInput="ngModel"
     id="post-title"
-    [placeholder]="post.title ? '' : 'Title'"
-    [value]="post.title || ''"
-    [(ngModel)]="post.title"
+    [placeholder]="postForm.post.title ? '' : 'Title'"
+    [value]="postForm.post.title || ''"
+    [(ngModel)]="postForm.post.title"
     minlength="2"
-    maxlength="15"
     required
   />
   <!-- <mat-error
@@ -28,9 +27,9 @@
     matInput
     #contentInput="ngModel"
     id="post-content"
-    [placeholder]="post.content ? '' : 'Treść'"
-    [value]="post.content || ''"
-    [(ngModel)]="post.content"
+    [placeholder]="postForm.post.content ? '' : 'Treść'"
+    [value]="postForm.post.content || ''"
+    [(ngModel)]="postForm.post.content"
     minlength="2"
     required
   />
@@ -45,10 +44,14 @@
   </mat-error> -->
 </mat-form-field>
 
-<file-upload (fileSelected)="onFileSelected($event)"></file-upload>
+<file-upload
+  *ngIf="postForm.image"
+  [image]="postForm.image"
+  (fileSelected)="onFileSelected($event)"
+></file-upload>
 
 <ng-select
-  [(ngModel)]="post.platforms"
+  [(ngModel)]="postForm.post.platforms"
   [items]="platforms"
   [multiple]="true"
   bindLabel="name"
