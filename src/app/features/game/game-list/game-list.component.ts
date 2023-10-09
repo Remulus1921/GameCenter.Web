@@ -20,6 +20,7 @@ export class GameListComponent implements OnInit {
 
   getGameList(): void {
     this._gameService.getGames().subscribe((games) => {
+      this.games = [];
       games.forEach((game) => {
         const imageUrl = URL.createObjectURL(createFileFromDto(game.image));
         this.games.push({ game, imageUrl });
