@@ -1,21 +1,29 @@
 <mat-card appearance="outlined">
   <div class="header-display">
-    <h1>{{title}}</h1>
+    <h1>{{ title }}</h1>
 
-    <button
-      mat-raised-button
-      routerLink="add"
-    >
-    <mat-icon>add</mat-icon>Dodaj Post
-  </button>
+    <button mat-raised-button routerLink="add">
+      <mat-icon>add</mat-icon>Dodaj Post
+    </button>
   </div>
 
   <ol>
     <li *ngFor="let post of posts">
-      {{post.title}}
-      <button mat-raised-button routerLink="details/{{post.id}}">Szczegóły</button>
-      <button mat-raised-button routerLink="edit/{{post.id}}">Edytuj</button>
-      <button mat-raised-button (click)="deletePost(post.id)">Usuń</button>
+      <img
+        *ngIf="post.imageUrl != null"
+        [src]="post.imageUrl"
+        alt="Okładka"
+        width="150"
+        height="200"
+      />
+      {{ post.post.title }}
+      <button mat-raised-button routerLink="details/{{ post.post.id }}">
+        Szczegóły
+      </button>
+      <button mat-raised-button routerLink="edit/{{ post.post.id }}">
+        Edytuj
+      </button>
+      <button mat-raised-button (click)="deletePost(post.post.id)">Usuń</button>
     </li>
   </ol>
 </mat-card>

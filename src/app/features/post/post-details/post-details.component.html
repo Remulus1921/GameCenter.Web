@@ -10,8 +10,8 @@
     </div>
   </div>
 
-  <div>
-    <p>{{ post.image }}</p>
+  <div *ngIf="imageUrl != null">
+    <img [src]="imageUrl" alt="Okładka" width="500" height="660" />
   </div>
 
   <div>
