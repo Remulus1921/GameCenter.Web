@@ -61,7 +61,7 @@ export class PostEditComponent implements OnInit {
   }
 
   isImageEmpty(): boolean {
-    if (this.image == null) return true;
+    if (this.image === null) return true;
 
     if (this.image && this.image.size > 0) {
       return true;

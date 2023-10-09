@@ -45,7 +45,6 @@
 </mat-form-field>
 
 <file-upload
-  *ngIf="postForm.image"
   [image]="postForm.image"
   (fileSelected)="onFileSelected($event)"
 ></file-upload>

@@ -23,7 +23,7 @@ export class PostAddComponent {
     image: File | null;
   }): void {
     const formData = new FormData();
-    if (image != null) formData.append('image', image, image.name);
+    if (image && image.size > 0) formData.append('image', image, image.name);
 
     formData.append('title', post.title);
     formData.append('content', post.content);
