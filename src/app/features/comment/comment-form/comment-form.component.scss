@@ -1,0 +1,14 @@
+form {
+  display: flex;
+  align-items: flex-start;
+}
+
+textarea {
+  flex: 1;
+  margin-right: 8px;
+  max-width: 400px;
+}
+
+button {
+  flex-shrink: 0;
+}

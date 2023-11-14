@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import jwt_decode from 'jwt-decode';
 import { createFileFromDto } from 'src/app/core/methods/file-methods';
+import { AuthenticationService } from 'src/app/core/services/auth/authentication.service';
 import { CommentService } from 'src/app/core/services/comment/comment.service';
 import { GameService } from 'src/app/core/services/game/game.service';
 import { RateService } from 'src/app/core/services/rate/rate.service';
@@ -25,12 +26,15 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
   token: string | null = null;
   decodedToken: any;
   email: string = '';
+  isEditing: boolean = false;
+  originalRate: number | null = 0;
 
   constructor(
     private _gameService: GameService,
     private _rateService: RateService,
     private _commentService: CommentService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private auth: AuthenticationService
   ) {}
 
   ngOnInit(): void {
@@ -66,20 +70,42 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
   }
 
   addRate(): void {
-    this._rateService
-      .addRate(this.id, this.rate)
-      .subscribe(() => this.getUserRate());
+    this._rateService.addRate(this.id, this.rate).subscribe(() => {
+      this.getAvarageRate();
+      this.getUserRate();
+    });
   }
 
   updateRate(): void {
-    this._rateService
-      .updateRate(this.id, this.rate)
-      .subscribe(() => this.getUserRate());
+    this._rateService.updateRate(this.id, this.rate).subscribe(() => {
+      this.getAvarageRate();
+    });
+  }
+
+  editRate() {
+    this.originalRate = this.userRate.gameRate;
+    this.isEditing = true;
+  }
+
+  confirmChange() {
+    this.userRate.gameRate = this.rate.gameRate;
+    this.isEditing = false;
+    this.updateRate();
+    this.getAvarageRate();
+  }
+
+  cancelChange() {
+    this.isEditing = false;
+    this.rate.gameRate = this.originalRate;
   }
 
   getUserEmail(): void {
     this.token = localStorage.getItem('jwtToken');
     this.decodedToken = jwt_decode(this.token as string);
     this.email = this.decodedToken.email;
+  }
+
+  isLoggedIn(): boolean {
+    return this.auth.isLoggedIn();
   }
 }

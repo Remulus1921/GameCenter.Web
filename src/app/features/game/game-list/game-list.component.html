@@ -1,23 +1,115 @@
 <mat-card appearance="outlined">
   <div class="header-display">
     <h1>{{ title }}</h1>
-
-    <button mat-raised-button routerLink="add">
-      <mat-icon>add</mat-icon>Dodaj Grę
-    </button>
+    <div *ngIf="isInRole()">
+      <button mat-raised-button matSort routerLink="add">
+        <mat-icon>add</mat-icon>Dodaj Grę
+      </button>
+    </div>
   </div>
 
-  <ol>
-    <li *ngFor="let game of games">
-      <img [src]="game.imageUrl" alt="Okładka" width="150" height="200" />
-      {{ game.game.name }}
-      <button mat-raised-button routerLink="details/{{ game.game.id }}">
-        Szczegóły
-      </button>
-      <button mat-raised-button routerLink="edit/{{ game.game.id }}">
-        Edytuj
-      </button>
-      <button mat-raised-button (click)="deleteGame(game.game.id)">Usuń</button>
-    </li>
-  </ol>
+  <div class="filter">
+    <mat-form-field>
+      <mat-label>Wybierz kolumnę do filtrowania</mat-label>
+      <mat-select [(value)]="selectedColumn">
+        <mat-option value="name">Nazwa gry</mat-option>
+        <mat-option value="gameType">Typ gry</mat-option>
+        <mat-option value="rating">Katwgoria Wiekowa</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input (keyup)="applyFilter($event)" matInput placeholder="Filtr" />
+    </mat-form-field>
+  </div>
+
+  <div class="mat-elevation-z8">
+    <mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="index">
+        <mat-header-cell *matHeaderCellDef> Lp. </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index">
+          {{ i + 1 }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="image">
+        <mat-header-cell *matHeaderCellDef> Okładka </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <img
+            *ngIf="element.imageUrl != null"
+            [src]="element.imageUrl"
+            alt="Okładka"
+            width="150"
+            height="200"
+          />
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef> Tytuł </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.name }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <mat-header-cell *matHeaderCellDef> Gatunek </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.gameType }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="rating">
+        <mat-header-cell *matHeaderCellDef> Kategoria Wiekowa </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.rating }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="details">
+        <mat-header-cell *matHeaderCellDef> Szczegóły </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            class="btn-delete"
+            [routerLink]="'details/' + element.id"
+          >
+            <mat-icon>launch</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <div *ngIf="isInRole()">
+        <ng-container matColumnDef="edit">
+          <mat-header-cell *matHeaderCellDef> Edytuj </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button
+              mat-icon-button
+              class="btn-delete"
+              [routerLink]="'edit/' + element.id"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+          <mat-header-cell *matHeaderCellDef> Usuń </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button
+              mat-icon-button
+              class="btn-delete"
+              (click)="deleteGame(element.id)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+      </div>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+  </div>
 </mat-card>

@@ -1,13 +1,13 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from "./main/home/home.component";
-import { PageNotFoundComponent } from "./main/page-not-found/page-not-found.component";
+import { PostListComponent } from './features/post/post-list/post-list.component';
+import { PageNotFoundComponent } from './main/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: PostListComponent,
     pathMatch: 'full',
   },
   {
@@ -17,12 +17,12 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: 'not-found',
-    pathMatch: 'full'
-  }
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

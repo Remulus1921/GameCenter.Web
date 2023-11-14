@@ -1,73 +1,69 @@
-<div>
-  <div>image</div>
-  <div>
-    <div>
-      <div>
-        <div>{{ comment.userName }}</div>
-      </div>
-      <div *ngIf="!isEditing()">{{ comment.commentContent }}</div>
-      <comment-form
-        *ngIf="isEditing()"
-        submitLabel="Edytuj"
-        [hasCancelButton]="true"
-        [initialText]="comment.commentContent"
-        (handleSubmit)="
-          updateComment.emit({ text: $event, commentId: comment.id })
-        "
-        (handleCancel)="setActiveComment.emit(null)"
-      ></comment-form>
-      <div>
-        <button
-          mat-raised-button
-          *ngIf="canReply"
-          (click)="
-            setActiveComment.emit({
-              id: comment.id,
-              type: activeCommentType.replying
-            })
-          "
-        >
-          Odpowiedz
-        </button>
-        <button
-          mat-raised-button
-          *ngIf="canEdit"
-          (click)="
-            setActiveComment.emit({
-              id: comment.id,
-              type: activeCommentType.editing
-            })
-          "
-        >
-          Edytuj
-        </button>
-        <button
-          mat-raised-button
-          *ngIf="canDelete"
-          (click)="deleteComment.emit(comment.id)"
-        >
-          Usuń
-        </button>
-      </div>
-      <comment-form
-        *ngIf="isReplying()"
-        submitLabel="Odpowiedz"
-        (handleSubmit)="addComment.emit({ text: $event, parentId: replyId })"
-      ></comment-form>
-      <div *ngIf="replies.length > 0">
-        <comment
-          *ngFor="let reply of replies"
-          [comment]="reply"
-          (setActiveComment)="setActiveComment.emit($event)"
-          [activeComment]="activeComment"
-          (addComment)="addComment.emit($event)"
-          (updateComment)="updateComment.emit($event)"
-          [parentId]="comment.id"
-          [replies]="[]"
-          [currentUserEmail]="currentUserEmail"
-          (deleteComment)="deleteComment.emit($event)"
-        ></comment>
-      </div>
-    </div>
+<div class="comment">
+  <div class="comment-user">
+    <span><mat-icon>account_circle</mat-icon></span
+    >{{ comment.userName }}
+  </div>
+  <div *ngIf="!isEditing()" class="comment-content">
+    {{ comment.commentContent }}
+  </div>
+  <comment-form
+    *ngIf="isEditing()"
+    submitLabel="Edytuj"
+    [hasCancelButton]="true"
+    [initialText]="comment.commentContent"
+    (handleSubmit)="updateComment.emit({ text: $event, commentId: comment.id })"
+    (handleCancel)="setActiveComment.emit(null)"
+  ></comment-form>
+  <div class="comment-buttons">
+    <button
+      mat-raised-button
+      *ngIf="canReply"
+      (click)="
+        setActiveComment.emit({
+          id: comment.id,
+          type: activeCommentType.replying
+        })
+      "
+    >
+      Odpowiedz
+    </button>
+    <button
+      mat-raised-button
+      *ngIf="canEdit"
+      (click)="
+        setActiveComment.emit({
+          id: comment.id,
+          type: activeCommentType.editing
+        })
+      "
+    >
+      Edytuj
+    </button>
+    <button
+      mat-raised-button
+      *ngIf="canDelete || isInRole()"
+      (click)="deleteComment.emit(comment.id)"
+    >
+      Usuń
+    </button>
+  </div>
+  <comment-form
+    *ngIf="isReplying()"
+    submitLabel="Odpowiedz"
+    (handleSubmit)="addComment.emit({ text: $event, parentId: replyId })"
+  ></comment-form>
+  <div *ngIf="replies.length > 0" class="comment-replies">
+    <comment
+      *ngFor="let reply of replies"
+      [comment]="reply"
+      (setActiveComment)="setActiveComment.emit($event)"
+      [activeComment]="activeComment"
+      (addComment)="addComment.emit($event)"
+      (updateComment)="updateComment.emit($event)"
+      [parentId]="comment.id"
+      [replies]="[]"
+      [currentUserEmail]="currentUserEmail"
+      (deleteComment)="deleteComment.emit($event)"
+    ></comment>
   </div>
 </div>

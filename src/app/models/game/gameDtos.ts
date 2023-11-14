@@ -32,3 +32,13 @@ export interface GameSmallDto {
   rating: string;
   image: FileDto;
 }
+
+export interface Game {
+  id: string;
+  name: string;
+  gameType: string;
+  rating: string;
+  imageUrl: string;
+
+  [key: string]: any;
+}

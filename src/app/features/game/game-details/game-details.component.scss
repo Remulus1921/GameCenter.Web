@@ -1,0 +1,112 @@
+.game-card {
+  margin: auto;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  font-size: 1.5em;
+}
+
+.cover-section {
+  margin-bottom: 16px;
+}
+
+.image-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-cover {
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ratings {
+  margin-left: 16px;
+  text-align: center;
+}
+
+.rate-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.rate-input {
+  margin-top: 8px;
+}
+
+.ratings p {
+  font-size: 1.5em;
+}
+
+.ratings small {
+  font-size: 0.8em;
+  color: #666;
+}
+
+.platforms h4 {
+  margin-bottom: 8px;
+  font-size: 1.2em;
+}
+
+.platforms ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.platforms li {
+  margin-bottom: 8px;
+  background-color: #f5f5f5;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.comments-section {
+  margin-left: 16px;
+}
+
+.comments-section h4 {
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
+
+.game-info {
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+tr {
+  border-bottom: 1px solid #eee;
+}
+
+td {
+  padding: 8px;
+}
+
+.label {
+  font-weight: bold;
+  padding-right: 10px;
+}

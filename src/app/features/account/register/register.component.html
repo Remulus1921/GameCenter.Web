@@ -1,11 +1,22 @@
-<mat-card appearance="outlined">
-  <div class="content" role="main">
-    <h1>Register</h1>
-    <div>First Name: <input [(ngModel)]="registerDto.firstName"></div>
-    <div>Last Name: <input [(ngModel)]="registerDto.lastName"></div>
-    <div>Email: <input [(ngModel)]="registerDto.email"></div>
-    <div>Username: <input [(ngModel)]="registerDto.username"></div>
-    <div>Password: <input [(ngModel)]="registerDto.password"></div>
-    <button (click)="register(registerDto)">Register</button>
+<div class="content" role="main">
+  <h1>Rejestracja</h1>
+  <div class="form-grup">
+    Imię: <input [(ngModel)]="registerDto.firstName" />
   </div>
-</mat-card>
+  <div class="form-grup">
+    Nazwisko: <input [(ngModel)]="registerDto.lastName" />
+  </div>
+  <div class="form-grup">Email: <input [(ngModel)]="registerDto.email" /></div>
+  <div class="form-grup">
+    Nazwa Użytkownika: <input [(ngModel)]="registerDto.username" />
+  </div>
+  <div class="form-grup">
+    Hasło: <input [(ngModel)]="registerDto.password" />
+  </div>
+  <button class="login-button" (click)="register(registerDto)">
+    Zarejestruj
+  </button>
+</div>
+
+<p class="login-text">Masz już konto? Zaloguj się!</p>
+<button class="login-button" routerLink="/login">Zaloguj</button>

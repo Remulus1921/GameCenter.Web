@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AuthenticationService } from 'src/app/core/services/auth/authentication.service';
 import {
   ActiveComment,
   ActiveCommentTypeEnum,
@@ -37,6 +38,8 @@ export class CommentComponent implements OnInit {
 
   @Input() comment!: CommentDto;
 
+  constructor(private auth: AuthenticationService) {}
+
   ngOnInit(): void {
     this.canReply = Boolean(this.currentUserEmail);
     this.canEdit = this.currentUserEmail === this.comment.userEmail;
@@ -64,5 +67,9 @@ export class CommentComponent implements OnInit {
       this.activeComment.id === this.comment.id &&
       this.activeComment.type === this.activeCommentType.editing
     );
+  }
+
+  isInRole(): boolean {
+    return this.auth.isInRole();
   }
 }

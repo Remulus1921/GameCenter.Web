@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { GameService } from 'src/app/core/services/game/game.service';
 import { GameAddUpdateDto } from 'src/app/models/game/gameDtos';
 
@@ -13,7 +14,11 @@ export class GameAddComponent {
   game: GameAddUpdateDto = {} as GameAddUpdateDto;
   image: File = {} as File;
 
-  constructor(private _gameService: GameService, private location: Location) {}
+  constructor(
+    private _gameService: GameService,
+    private location: Location,
+    private toastr: ToastrService
+  ) {}
 
   addGame({ game, image }: { game: GameAddUpdateDto; image: File }): void {
     const formData = new FormData();
@@ -30,9 +35,15 @@ export class GameAddComponent {
       formData.append('platforms', platform);
     });
 
-    this._gameService.addGame(formData).subscribe(() => {
-      this.goBack();
-    });
+    this._gameService.addGame(formData).subscribe(
+      (response) => {
+        this.toastr.success(response, 'Stan gry');
+        this.goBack();
+      },
+      (error) => {
+        this.toastr.error(error.error, 'Stan gry');
+      }
+    );
   }
 
   goBack(): void {

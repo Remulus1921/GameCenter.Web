@@ -1,20 +1,27 @@
-<mat-card appearance="outlined">
-  <div>
+<mat-card appearance="outlined" class="post-card">
+  <div class="title">
     <h1>{{ post.title }}</h1>
-    <div *ngIf="post.created == post.modified">
-      <p>Dodano {{ post.created }}</p>
-    </div>
-    <div *ngIf="post.created != post.modified">
-      <p>Dodano {{ post.created }}</p>
-      <p>Zmodyfikowano {{ post.modified }}</p>
-    </div>
   </div>
 
-  <div *ngIf="imageUrl != null">
-    <img [src]="imageUrl" alt="Okładka" width="500" height="660" />
+  <div class="dates">
+    <div
+      *ngIf="areDatesEqual(post.created, post.modified); else modifiedSection"
+    >
+      <p>Dodano {{ post.created | date : "yyyy-MM-dd HH:mm" }}</p>
+    </div>
+    <ng-template #modifiedSection>
+      <div>
+        <p>Dodano {{ post.created | date : "yyyy-MM-dd HH:mm" }}</p>
+        <p>Zmodyfikowano {{ post.modified | date : "yyyy-MM-dd HH:mm" }}</p>
+      </div>
+    </ng-template>
   </div>
 
-  <div>
+  <div *ngIf="imageUrl != null" class="image-container">
+    <img [src]="imageUrl" alt="Okładka" />
+  </div>
+
+  <div class="platforms">
     <ul>
       <li *ngFor="let platform of post.platforms">
         <p>{{ platform }}</p>
@@ -22,10 +29,11 @@
     </ul>
   </div>
 
-  <div>
+  <div class="content">
     <p>{{ post.content }}</p>
   </div>
-  <div>
+
+  <div class="footer">
     <button class="block-button btn-back" mat-raised-button routerLink="/post">
       <mat-icon>keyboard_backspace</mat-icon>Powrót
     </button>

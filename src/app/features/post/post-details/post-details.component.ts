@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { createFileFromDto } from 'src/app/core/methods/file-methods';
@@ -17,7 +18,8 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private _postService: PostService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {
@@ -44,5 +46,12 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     } else {
       this.date = this.post.created;
     }
+  }
+
+  areDatesEqual(date1: Date, date2: Date): boolean {
+    const formattedDate1 = this.datePipe.transform(date1, 'yyyy-MM-dd HH:mm');
+    const formattedDate2 = this.datePipe.transform(date2, 'yyyy-MM-dd HH:mm');
+
+    return formattedDate1 === formattedDate2;
   }
 }

@@ -1,0 +1,90 @@
+<mat-card appearance="outlined">
+  <div class="header-display">
+    <h1>{{ title }}</h1>
+  </div>
+
+  <div class="mat-elevation-z8">
+    <mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="index">
+        <mat-header-cell *matHeaderCellDef> Lp. </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index">
+          {{ i + 1 }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Nazwa Użytkownika </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.userName }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email Użytkownika </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.userEmail }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="role">
+        <mat-header-cell *matHeaderCellDef> Rola Użytkownika </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.userRole }}
+        </mat-cell>
+      </ng-container>
+
+      <div *ngIf="isAdmin() || isMod()">
+        <ng-container matColumnDef="moderator">
+          <mat-header-cell *matHeaderCellDef>
+            Dodaj do rangi Moderator
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button
+              [disabled]="
+                element.userRole === 'Moderator' || element.userRole === 'Admin'
+              "
+              mat-icon-button
+              class="btn-delete"
+              (click)="addToRole('Moderator', element.userEmail)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+        <div *ngIf="isAdmin()">
+          <ng-container matColumnDef="admin">
+            <mat-header-cell *matHeaderCellDef>
+              Dodaj do rangi Admin
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button
+                [disabled]="element.userRole === 'Admin'"
+                mat-icon-button
+                class="btn-delete"
+                (click)="addToRole('Admin', element.userEmail)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="delete">
+            <mat-header-cell *matHeaderCellDef> Usuń </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button
+                mat-icon-button
+                class="btn-delete"
+                (click)="deleteUser(element.userEmail)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+        </div>
+      </div>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </div>
+</mat-card>

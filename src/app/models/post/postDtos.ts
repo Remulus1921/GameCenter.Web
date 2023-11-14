@@ -24,3 +24,12 @@ export interface PostSmallDto {
   image: FileDto | null;
   platforms: string[];
 }
+
+export interface Post {
+  id: string;
+  title: string;
+  created: Date;
+  modified: Date;
+  imageUrl: string | null;
+  platforms: string[];
+}

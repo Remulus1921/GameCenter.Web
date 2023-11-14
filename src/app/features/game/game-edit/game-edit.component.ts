@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { createFileFromDto } from 'src/app/core/methods/file-methods';
 import { GameService } from 'src/app/core/services/game/game.service';
 import { GameAddUpdateDto } from 'src/app/models/game/gameDtos';
@@ -19,7 +20,8 @@ export class GameEditComponent implements OnInit {
   constructor(
     private _gameService: GameService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -54,9 +56,15 @@ export class GameEditComponent implements OnInit {
     game.platforms.forEach((platform) => {
       formData.append('platforms', platform);
     });
-    this._gameService
-      .updateGame(this.id, formData)
-      .subscribe(() => this.goBack());
+    this._gameService.updateGame(this.id, formData).subscribe(
+      () => {
+        this.toastr.success('Zaktualizowano grę', 'Stan gry');
+        this.goBack();
+      },
+      (error) => {
+        this.toastr.error('Błąd', 'Stan gry');
+      }
+    );
   }
 
   goBack(): void {

@@ -1,42 +1,39 @@
 <mat-toolbar class="mat-elevation-z6 navbar">
-  <a class="nav-title" routerLink="/">{{title}}</a>
+  <a class="nav-title" routerLink="/">{{ title }}</a>
   <span class="fill-remaining-space"></span>
 
-  <a mat-button
-    routerLinkActive="menu-item-active"
-    [routerLinkActiveOptions]="{exact: true}"
-    routerLink="/">
-    <mat-icon>home</mat-icon> Home
-  </a>
-
   <nav>
-    <a mat-button
-      routerLinkActive="menu-item-active"
-      routerLink="/login">
-      <mat-icon>security</mat-icon> Login
+    <a mat-button routerLinkActive="menu-item-active" routerLink="/post">
+      Artykuły
     </a>
-    <a mat-button
-      routerLinkActive="menu-item-active"
-      routerLink="/register">
-      <mat-icon>call_made</mat-icon> Register
+    <a mat-button routerLinkActive="menu-item-active" routerLink="/game">
+      Gry
     </a>
   </nav>
 
-  <nav>
-    <a mat-button
-      routerLinkActive="menu-item-active"
-      routerLink="/game">
-      Gry
-    </a>
-    <a mat-button
-      routerLinkActive="menu-item-active"
-      routerLink="/post">
-      Posty
-    </a>
-    <a mat-button
-      routerLinkActive="menu-item-active"
-      routerLink="/platform">
+  <nav *ngIf="isLoggedIn() && isInRole()">
+    <a mat-button routerLinkActive="menu-item-active" routerLink="/platform">
       Platformy
+    </a>
+    <a mat-button routerLinkActive="menu-item-active" routerLink="/user-list">
+      Użytkownicy
+    </a>
+  </nav>
+
+  <nav *ngIf="!isLoggedIn()">
+    <a mat-button routerLinkActive="menu-item-active" routerLink="/login">
+      <mat-icon>security</mat-icon> Logowanie
+    </a>
+    <a mat-button routerLinkActive="menu-item-active" routerLink="/register">
+      <mat-icon>call_made</mat-icon> Rejestracja
+    </a>
+  </nav>
+  <nav *ngIf="isLoggedIn()">
+    <a mat-button routerLinkActive="menu-item-active" routerLink="/user">
+      Profil
+    </a>
+    <a mat-button (click)="logout()" routerLink="/post">
+      <mat-icon>exit_to_app</mat-icon> Wyloguj
     </a>
   </nav>
 </mat-toolbar>

@@ -1,20 +1,58 @@
 <mat-card appearance="outlined">
   <div class="header-display">
-    <h1>{{title}}</h1>
+    <h1>{{ title }}</h1>
 
-    <button
-      mat-raised-button
-      routerLink="add"
-    >
-    <mat-icon>add</mat-icon>Dodaj Platformę
-  </button>
+    <button mat-raised-button routerLink="add">
+      <mat-icon>add</mat-icon>Dodaj Platformę
+    </button>
   </div>
 
-  <ol>
-    <li *ngFor="let platform of platforms">
-      {{platform.name}}
-      <button mat-raised-button routerLink="edit/{{platform.id}}">Edytuj</button>
-      <button mat-raised-button (click)="deletePlatform(platform.id)">Usuń</button>
-    </li>
-  </ol>
+  <div class="mat-elevation-z8">
+    <mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="index">
+        <mat-header-cell *matHeaderCellDef> Lp. </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index">
+          {{ i + 1 }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell mat-sort-header *matHeaderCellDef>
+          Nazwa Platformy
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.name }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef> Edytuj </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            class="btn-delete"
+            [routerLink]="'edit/' + element.id"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef> Usuń </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            class="btn-delete"
+            (click)="deletePlatform(element.id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </div>
 </mat-card>

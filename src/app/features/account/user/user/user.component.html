@@ -1,0 +1,15 @@
+<mat-card appearance="outlined">
+  <div>
+    <h1>{{ title }}</h1>
+    <h2>{{ currentUser.userName }}</h2>
+  </div>
+
+  <div>
+    <p>{{ currentUser.userEmail }}</p>
+  </div>
+  <div>
+    <button class="block-button btn-back" mat-raised-button (click)="goBack()">
+      <mat-icon>keyboard_backspace</mat-icon>Powrót
+    </button>
+  </div>
+</mat-card>

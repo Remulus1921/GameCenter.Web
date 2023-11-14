@@ -1,8 +1,10 @@
-<mat-card appearance="outlined">
-  <div class="content" role="main">
-    <h1>Login</h1>
-    <div>Email: <input [(ngModel)]="loginDto.email"></div>
-    <div>Password: <input [(ngModel)]="loginDto.password"></div>
-    <button (click)="login(loginDto)">Login</button>
+<div class="content" role="main">
+  <h1>Logowanie</h1>
+  <div class="form-group">Email: <input [(ngModel)]="loginDto.email" /></div>
+  <div class="form-group">
+    Hasło: <input type="password" [(ngModel)]="loginDto.password" />
   </div>
-</mat-card>
+  <button class="login-button" (click)="login(loginDto)">Zaloguj</button>
+</div>
+<p>Nie masz konta? Zarejestruj się!</p>
+<button class="login-button" routerLink="/register">Rejestracja</button>

@@ -1,0 +1,36 @@
+.comment {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.comment-user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.comment-user span {
+  margin-right: 8px;
+}
+
+.comment-content {
+  margin-bottom: 8px;
+}
+
+.comment-buttons {
+  display: flex;
+}
+
+.comment-buttons button {
+  margin-right: 0.3em;
+}
+
+.comment-form textarea {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.comment-replies {
+  margin-top: 0.6em;
+}

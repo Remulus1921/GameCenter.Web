@@ -1,25 +1,50 @@
-<mat-card appearance="outlined">
-  <div>
+<mat-card appearance="outlined" class="game-card">
+  <div class="header">
+    <h1>{{ game.name }}</h1>
     <button class="block-button btn-back" mat-raised-button routerLink="/game">
       <mat-icon>keyboard_backspace</mat-icon>Powrót
     </button>
   </div>
-  <div>
-    <h1>{{ game.name }}</h1>
-  </div>
-  <div>
-    <img [src]="imageUrl" alt="Okładka" width="500" height="660" />
-    <div>
-      <p>Średnia ocena</p>
-      <p>{{ avarageRate.avarageRate }}</p>
-      <p>Liczba ocen</p>
-      <p>{{ avarageRate.amountOfRates }}</p>
+
+  <div class="cover-section">
+    <div class="image-info-container">
+      <img [src]="imageUrl" alt="Okładka" class="game-cover" />
+      <div class="ratings">
+        <p>{{ avarageRate.avarageRate }}</p>
+        <p>Średnia ocena</p>
+        <p>
+          Liczba ocen:
+          <small>{{ avarageRate.amountOfRates }}</small>
+        </p>
+      </div>
     </div>
-    <div *ngIf="userRate.gameRate != null">
+  </div>
+
+  <div *ngIf="isLoggedIn()" class="rate-section">
+    <div *ngIf="userRate.gameRate != null && !isEditing; else editRateSection">
       <p>Twoja ocena</p>
       <p>{{ userRate.gameRate }}</p>
+      <button mat-raised-button (click)="editRate()">Zmień ocenę</button>
     </div>
-    <div *ngIf="userRate.gameRate == null">
+    <ng-template #editRateSection>
+      <div class="rate-input">
+        <mat-form-field *ngIf="isEditing">
+          <mat-label for="rate">Zmień ocenę!</mat-label>
+          <input
+            matInput
+            type="number"
+            [placeholder]="rate.gameRate ? '' : '0'"
+            [value]="rate.gameRate || ''"
+            [(ngModel)]="rate.gameRate"
+          />
+        </mat-form-field>
+        <div *ngIf="isEditing">
+          <button mat-raised-button (click)="confirmChange()">Zatwierdź</button>
+          <button mat-raised-button (click)="cancelChange()">Anuluj</button>
+        </div>
+      </div>
+    </ng-template>
+    <div *ngIf="userRate.gameRate == null && !isEditing" class="rate-input">
       <mat-form-field>
         <mat-label for="rate">Dodaj ocenę!</mat-label>
         <input
@@ -30,19 +55,53 @@
           [(ngModel)]="rate.gameRate"
         />
       </mat-form-field>
-
       <button mat-raised-button (click)="addRate()">Oceń</button>
     </div>
   </div>
-  <div>
-    <h4>Platformy na których dostępna jest gra</h4>
-    <ul>
-      <li *ngFor="let platform of game.platformsName">
-        <p>{{ platform }}</p>
-      </li>
-    </ul>
+
+  <div class="game-info">
+    <h4>Informacje o grze</h4>
+    <table>
+      <tr>
+        <td class="label">Studio:</td>
+        <td>{{ game.studio || "Brak danych" }}</td>
+      </tr>
+      <tr>
+        <td class="label">Gatunek:</td>
+        <td>{{ game.gameType || "Brak danych" }}</td>
+      </tr>
+      <tr>
+        <td class="label">Kategoria wiekowa:</td>
+        <td>{{ game.rating || "Brak danych" }}</td>
+      </tr>
+      <tr>
+        <td class="label">Rozmiar gry:</td>
+        <td>{{ game.capacity ? game.capacity + " GB" : "Brak danych" }}</td>
+      </tr>
+      <tr>
+        <td class="label">Platformy:</td>
+        <td>
+          <ul>
+            <li *ngFor="let platform of game.platformsName">{{ platform }}</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
   </div>
-  <div>
-    <comments [currentUserEmail]="email" [gameId]="id"></comments>
+
+  <div class="platforms">
+    <h4>Opis</h4>
+    <p>{{ game.description }}</p>
   </div>
+
+  <div *ngIf="isLoggedIn(); else logIn">
+    <div class="comments-section">
+      <comments [currentUserEmail]="email" [gameId]="id"></comments>
+    </div>
+  </div>
+
+  <ng-template #logIn>
+    <h2>Zaloguj się żeby dyskutować w komentarzach</h2>
+    <a mat-raised-button routerLink="/login">Zaloguj</a>
+  </ng-template>
 </mat-card>

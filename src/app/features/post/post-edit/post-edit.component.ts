@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { createFileFromDto } from 'src/app/core/methods/file-methods';
 import { PostService } from 'src/app/core/services/post/post.service';
 import { PostAddUpdateDto } from 'src/app/models/post/postDtos';
@@ -11,7 +12,7 @@ import { PostAddUpdateDto } from 'src/app/models/post/postDtos';
   styleUrls: ['./post-edit.component.scss'],
 })
 export class PostEditComponent implements OnInit {
-  title = 'Edytuj post';
+  title = 'Edytuj artykuł';
   id!: string;
   post: PostAddUpdateDto = {} as PostAddUpdateDto;
   image: File | null = {} as File;
@@ -19,7 +20,8 @@ export class PostEditComponent implements OnInit {
   constructor(
     private _postService: PostService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -55,9 +57,15 @@ export class PostEditComponent implements OnInit {
       formData.append('platforms', platform);
     });
 
-    this._postService
-      .updatePost(this.id, formData)
-      .subscribe(() => this.goBack());
+    this._postService.updatePost(this.id, formData).subscribe(
+      (response) => {
+        this.toastr.success(response, 'Stan artykułu');
+        this.goBack();
+      },
+      (error) => {
+        this.toastr.error(error.error, 'Stan artykułu');
+      }
+    );
   }
 
   isImageEmpty(): boolean {

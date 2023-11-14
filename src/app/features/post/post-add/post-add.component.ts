@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { PostService } from 'src/app/core/services/post/post.service';
 import { PostAddUpdateDto } from 'src/app/models/post/postDtos';
 
@@ -9,11 +10,15 @@ import { PostAddUpdateDto } from 'src/app/models/post/postDtos';
   styleUrls: ['./post-add.component.scss'],
 })
 export class PostAddComponent {
-  title = 'Dodaj Nowy Post';
+  title = 'Dodaj Nowy Artykuł';
   post: PostAddUpdateDto = {} as PostAddUpdateDto;
   image: File | null = {} as File;
 
-  constructor(private _postService: PostService, private location: Location) {}
+  constructor(
+    private _postService: PostService,
+    private location: Location,
+    private toastr: ToastrService
+  ) {}
 
   addPost({
     post,
@@ -32,7 +37,15 @@ export class PostAddComponent {
       formData.append('platforms', platform);
     });
 
-    this._postService.addPost(formData).subscribe(() => this.goBack());
+    this._postService.addPost(formData).subscribe(
+      (response) => {
+        this.toastr.success(response, 'Stan artykułu');
+        this.goBack();
+      },
+      (error) => {
+        this.toastr.error(error.error);
+      }
+    );
   }
 
   goBack(): void {
