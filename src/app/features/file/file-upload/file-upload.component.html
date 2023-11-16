@@ -1,7 +1,7 @@
 <div
   class="custom-dropzone"
   ngx-dropzone
-  [accept]="'image/*'"
+  [accept]="'image/jpeg'"
   (change)="onSelect($event)"
 >
   <ngx-dropzone-label>Dodaj zdjęcie</ngx-dropzone-label>
@@ -13,4 +13,7 @@
     (removed)="onRemove(f)"
   >
   </ngx-dropzone-image-preview>
+</div>
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
 </div>

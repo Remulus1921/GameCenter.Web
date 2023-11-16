@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { AuthenticationService } from 'src/app/core/services/auth/authentication.service';
-import { Register } from 'src/app/models/user/register';
+import { Component } from "@angular/core";
+import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+import { AuthenticationService } from "src/app/core/services/auth/authentication.service";
+import { Register } from "src/app/models/user/register";
 
 @Component({
   selector: 'app-register',
@@ -11,6 +11,8 @@ import { Register } from 'src/app/models/user/register';
 })
 export class RegisterComponent {
   registerDto = new Register();
+  passwordRegex =
+    /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
 
   constructor(
     private authService: AuthenticationService,
@@ -19,9 +21,15 @@ export class RegisterComponent {
   ) {}
 
   register(registerDto: Register) {
+    if (!this.passwordRegex.test(registerDto.password)) {
+      this.toastr.error(
+        'Hasło ma jest nie prawidłowe. Hasło powinno mieć długość co najmniej 8 znaków, zawierać dużą i małą literę, liczbę i znak specjalny',
+        'Stan rejestracji'
+      );
+      return;
+    }
     this.authService.register(registerDto).subscribe(
       (response) => {
-        console.log(response);
         if (response.status >= 200 && response.status <= 300) {
           this.toastr.success(
             'Zarejestrowano, zaloguj się',

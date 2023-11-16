@@ -1,0 +1,79 @@
+.profile-card {
+  margin: auto;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.profile-card h1 {
+  font-size: 1.5em;
+  color: #333333;
+}
+
+.label {
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+.profile-section {
+  margin-top: 16px;
+  padding: 12px;
+  border: 1px solid #eeeeee;
+  border-radius: 8px;
+}
+
+.profile-info p {
+  font-size: 1.2em;
+  margin-bottom: 8px;
+  color: #555555;
+}
+
+.profile-info button.mat-button {
+  margin-right: 8px;
+  background-color: #4caf50 !important;
+  color: #ffffff !important;
+}
+
+.edit-section input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.password-section button {
+  margin-right: 8px;
+  background-color: #4caf50;
+  color: #ffffff;
+}
+
+.edit-section button,
+.edit-section button.mat-button.mat-button-base {
+  margin-right: 8px;
+  background-color: #4caf50 !important;
+  color: #ffffff !important;
+}
+
+.password-section input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.block-button {
+  margin-top: 16px;
+  background-color: #4caf50;
+  color: #ffffff;
+}
+
+.btn-back {
+  margin-right: 8px;
+  background-color: #2196f3;
+  color: #ffffff;
+}

@@ -4,6 +4,14 @@ export interface UserDto {
   userRole: string;
 }
 
+export interface UserUpdateDto {
+  firstName: string;
+  lastName: string;
+  userName: string;
+  userEmail: string;
+  password: string;
+}
+
 export interface RoleDto {
   userEmail: string;
   roleName: string;

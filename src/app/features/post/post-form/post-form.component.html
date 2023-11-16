@@ -10,15 +10,12 @@
     minlength="2"
     required
   />
-  <!-- <mat-error
-      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
+  <mat-error
+    *ngIf="titleInput.invalid && (titleInput.dirty || titleInput.touched)"
   >
-      {{
-          markInvalid
-              ? formErrors.markField
-              : "This field is required, minimum lenght must be at least 2 signs"
-      }}
-  </mat-error> -->
+    <span *ngIf="titleInput.errors?.['required']">Pole jest wymagane</span>
+    <span *ngIf="titleInput.errors?.['minlength']">Minimum 2 znaki</span>
+  </mat-error>
 </mat-form-field>
 
 <mat-form-field class="example-full-width block-input">
@@ -30,18 +27,13 @@
     [placeholder]="postForm.post.content ? '' : 'Treść'"
     [value]="postForm.post.content || ''"
     [(ngModel)]="postForm.post.content"
-    minlength="2"
     required
   />
-  <!-- <mat-error
-      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
+  <mat-error
+    *ngIf="contentInput.invalid && (contentInput.dirty || contentInput.touched)"
   >
-      {{
-          markInvalid
-              ? formErrors.markField
-              : "This field is required, minimum lenght must be at least 2 signs"
-      }}
-  </mat-error> -->
+    <span *ngIf="contentInput.errors?.['required']">Pole jest wymagane</span>
+  </mat-error>
 </mat-form-field>
 
 <file-upload
@@ -50,6 +42,7 @@
 ></file-upload>
 
 <ng-select
+  #platformSelect="ngModel"
   [(ngModel)]="postForm.post.platforms"
   [items]="platforms"
   [multiple]="true"
@@ -57,8 +50,17 @@
   bindValue="name"
   placeholder="Wybierz platformy"
   [typeahead]="platformsInput$"
+  style="margin-bottom: 0"
+  required
 >
 </ng-select>
+<mat-error
+  *ngIf="
+    platformSelect.invalid && (platformSelect.dirty || platformSelect.touched)
+  "
+>
+  <span *ngIf="platformSelect.errors?.['required']">Pole jest wymagane</span>
+</mat-error>
 
 <div class="controls">
   <button class="block-button btn-add" mat-raised-button (click)="passPost()">

@@ -1,15 +1,76 @@
-<mat-card appearance="outlined">
+<mat-card appearance="outlined" class="profile-card">
   <div>
     <h1>{{ title }}</h1>
-    <h2>{{ currentUser.userName }}</h2>
+  </div>
+
+  <div class="profile-section">
+    <label>Imię:</label>
+    <div *ngIf="!editFirstName" class="profile-info">
+      <p>{{ currentUser.firstName }}</p>
+      <button mat-button (click)="editField('firstName')">Edytuj</button>
+    </div>
+
+    <div *ngIf="editFirstName" class="edit-section">
+      <input [(ngModel)]="updateUser.firstName" placeholder="Nowe imię" />
+      <button mat-button (click)="saveField('firstName')">Zapisz</button>
+      <button mat-button (click)="cancel('firstName')">Anuluj</button>
+    </div>
+  </div>
+
+  <div class="profile-section">
+    <label>Nazwisko:</label>
+    <div *ngIf="!editLastName" class="profile-info">
+      <p>{{ currentUser.lastName }}</p>
+      <button mat-button (click)="editField('lastName')">Edytuj</button>
+    </div>
+
+    <div *ngIf="editLastName" class="edit-section">
+      <input [(ngModel)]="updateUser.lastName" placeholder="Nowe nazwisko" />
+      <button mat-button (click)="saveField('lastName')">Zapisz</button>
+      <button mat-button (click)="cancel('lastName')">Anuluj</button>
+    </div>
+  </div>
+
+  <div class="profile-section">
+    <label>Nazwa użwytkownika</label>
+    <div *ngIf="!editUserName" class="profile-info">
+      <p>{{ currentUser.userName }}</p>
+      <button mat-button (click)="editField('userName')">Edytuj</button>
+    </div>
+
+    <div *ngIf="editUserName" class="edit-section">
+      <input
+        [(ngModel)]="updateUser.userName"
+        placeholder="Nowa nazwa użytkownika"
+      />
+      <button mat-button (click)="saveField('userName')">Zapisz</button>
+      <button mat-button (click)="cancel('userName')">Anuluj</button>
+    </div>
+  </div>
+
+  <div class="profile-section">
+    <div *ngIf="!changePasswordMode" class="password-section">
+      <button mat-button (click)="changePassword()">Zmień hasło</button>
+    </div>
+
+    <div *ngIf="changePasswordMode" class="password-section">
+      <input
+        type="password"
+        [(ngModel)]="newPassword"
+        placeholder="Nowe hasło"
+      />
+      <button mat-button (click)="savePassword()">Zapisz</button>
+      <button mat-button (click)="cancel('password')">Anuluj</button>
+    </div>
   </div>
 
   <div>
-    <p>{{ currentUser.userEmail }}</p>
-  </div>
-  <div>
-    <button class="block-button btn-back" mat-raised-button (click)="goBack()">
-      <mat-icon>keyboard_backspace</mat-icon>Powrót
+    <button
+      class="block-button btn-save"
+      mat-raised-button
+      (click)="updateProfile()"
+    >
+      <mat-icon>add</mat-icon>Zatwierdź zmiany
     </button>
   </div>
 </mat-card>

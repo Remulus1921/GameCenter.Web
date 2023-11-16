@@ -8,18 +8,14 @@
     [value]="gameForm.game.name || ''"
     [(ngModel)]="gameForm.game.name"
     minlength="2"
-    maxlength="15"
     required
   />
-  <!-- <mat-error
-      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
+  <mat-error
+    *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)"
   >
-      {{
-          markInvalid
-              ? formErrors.markField
-              : "This field is required, minimum lenght must be at least 2 signs"
-      }}
-  </mat-error> -->
+    <span *ngIf="nameInput.errors?.['required']">Pole jest wymagane</span>
+    <span *ngIf="nameInput.errors?.['minlength']">Minimum 2 znaki</span>
+  </mat-error>
 </mat-form-field>
 
 <mat-form-field class="example-full-width block-input">
@@ -32,18 +28,14 @@
     [value]="gameForm.game.gameType || ''"
     [(ngModel)]="gameForm.game.gameType"
     minlength="2"
-    maxlength="15"
     required
   />
-  <!-- <mat-error
-      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
+  <mat-error
+    *ngIf="typeInput.invalid && (typeInput.dirty || typeInput.touched)"
   >
-      {{
-          markInvalid
-              ? formErrors.markField
-              : "This field is required, minimum lenght must be at least 2 signs"
-      }}
-  </mat-error> -->
+    <span *ngIf="typeInput.errors?.['required']">Pole jest wymagane</span>
+    <span *ngIf="typeInput.errors?.['minlength']">Minimum 2 znaki</span>
+  </mat-error>
 </mat-form-field>
 
 <mat-form-field class="example-full-width block-input">
@@ -55,19 +47,17 @@
     [placeholder]="gameForm.game.description ? '' : 'Opis'"
     [value]="gameForm.game.description || ''"
     [(ngModel)]="gameForm.game.description"
-    minlength="2"
-    maxlength="15"
+    minlength="50"
     required
   />
-  <!-- <mat-error
-      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
+  <mat-error
+    *ngIf="descInput.invalid && (descInput.dirty || descInput.touched)"
   >
-      {{
-          markInvalid
-              ? formErrors.markField
-              : "This field is required, minimum lenght must be at least 2 signs"
-      }}
-  </mat-error> -->
+    <span *ngIf="descInput.errors?.['required']">Pole jest wymagane</span>
+    <span *ngIf="descInput.errors?.['minlength']"
+      >Opis powinien mieć minimalnie 50 znaków</span
+    >
+  </mat-error>
 </mat-form-field>
 
 <mat-form-field class="example-full-width block-input">
@@ -79,65 +69,69 @@
     [placeholder]="gameForm.game.studio ? '' : 'Producent'"
     [value]="gameForm.game.studio || ''"
     [(ngModel)]="gameForm.game.studio"
-    minlength="2"
-    maxlength="15"
+    minlength="1"
     required
   />
-  <!-- <mat-error
-      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
+  <mat-error
+    *ngIf="studioInput.invalid && (studioInput.dirty || studioInput.touched)"
   >
-      {{
-          markInvalid
-              ? formErrors.markField
-              : "This field is required, minimum lenght must be at least 2 signs"
-      }}
-  </mat-error> -->
+    <span *ngIf="studioInput.errors?.['required']">Pole jest wymagane</span>
+    <span *ngIf="studioInput.errors?.['minlength']"
+      >To pole nie może być puste</span
+    >
+  </mat-error>
 </mat-form-field>
 
-<mat-form-field class="example-full-width block-input">
+<mat-form-field class="example-full-width block-input" appearance="fill">
   <mat-label for="game-rating">Kategoria Wiekowa Gry</mat-label>
-  <input
+  <mat-select
     matInput
     #ratingInput="ngModel"
     id="game-rating"
-    [placeholder]="gameForm.game.rating ? '' : 'Kategoria Wiekowa'"
-    [value]="gameForm.game.rating || ''"
+    placeholder="Wybierz kategorię wiekową"
     [(ngModel)]="gameForm.game.rating"
-    minlength="2"
-    maxlength="15"
     required
-  />
-  <!-- <mat-error
-      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
   >
-      {{
-          markInvalid
-              ? formErrors.markField
-              : "This field is required, minimum lenght must be at least 2 signs"
-      }}
-  </mat-error> -->
+    <mat-option value="PEGI 3">PEGI 3</mat-option>
+    <mat-option value="PEGI 7">PEGI 7</mat-option>
+    <mat-option value="PEGI 12">PEGI 12</mat-option>
+    <mat-option value="PEGI 16">PEGI 16</mat-option>
+    <mat-option value="PEGI 18">PEGI 18</mat-option>
+  </mat-select>
+  <mat-error
+    *ngIf="ratingInput.invalid && (ratingInput.dirty || ratingInput.touched)"
+  >
+    <span *ngIf="ratingInput.errors?.['required']"
+      >Kategoria wiekowa jest wymagana</span
+    >
+  </mat-error>
 </mat-form-field>
 
 <mat-form-field class="example-full-width block-input">
-  <mat-label for="game-capacity">Rozmiar Gry</mat-label>
+  <mat-label for="game-capacity">Rozmiar Gry [GB]</mat-label>
   <input
     matInput
+    #capacityInput="ngModel"
     type="number"
     id="game-capacity"
     [placeholder]="gameForm.game.capacity ? '' : '0'"
     [value]="gameForm.game.capacity || ''"
     [(ngModel)]="gameForm.game.capacity"
+    min="0.01"
     required
   />
-  <!-- <mat-error
-      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
+  <mat-error
+    *ngIf="
+      capacityInput.invalid && (capacityInput.dirty || capacityInput.touched)
+    "
   >
-      {{
-          markInvalid
-              ? formErrors.markField
-              : "This field is required, minimum lenght must be at least 2 signs"
-      }}
-  </mat-error> -->
+    <span *ngIf="capacityInput.errors?.['required']"
+      >Rozmiar gry jest wymagany</span
+    >
+    <span *ngIf="capacityInput.errors?.['min']"
+      >Minimalny rozmiar to {{ capacityInput.errors?.['min'].min }}</span
+    >
+  </mat-error>
 </mat-form-field>
 
 <file-upload
@@ -146,40 +140,26 @@
   (fileSelected)="onFileSelected($event)"
 ></file-upload>
 
-<!-- <mat-form-field class="example-full-width block-input">
-  <mat-label for="game-image">Dodaj zdjęcie okładki gry</mat-label>
-  <input
-      matInput
-      #imageInput="ngModel"
-      id="game-image"
-      [placeholder]="game.imagePath ? '' : 'Dodaj zdjęcie'"
-      [value]="game.imagePath || ''"
-      [(ngModel)]="game.imagePath"
-      minlength="2"
-      maxlength="15"
-      required
-  /> -->
-<!-- <mat-error
-      *ngIf="markInput.invalid && (markInput.dirty || markInput.touched)"
-  >
-      {{
-          markInvalid
-              ? formErrors.markField
-              : "This field is required, minimum lenght must be at least 2 signs"
-      }}
-  </mat-error> -->
-<!-- </mat-form-field> -->
-
 <ng-select
+  #platformSelect="ngModel"
   [(ngModel)]="gameForm.game.platforms"
   [items]="platforms"
   [multiple]="true"
   bindLabel="name"
   bindValue="name"
   placeholder="Wybierz platformy"
+  required
   [typeahead]="platformsInput$"
+  style="margin-bottom: 0"
 >
 </ng-select>
+<mat-error
+  *ngIf="
+    platformSelect.invalid && (platformSelect.dirty || platformSelect.touched)
+  "
+>
+  <span *ngIf="platformSelect.errors?.['required']">Pole jest wymagane</span>
+</mat-error>
 
 <div class="controls">
   <button class="block-button btn-add" mat-raised-button (click)="passGame()">

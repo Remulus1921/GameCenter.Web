@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Subject } from 'rxjs';
-import { PlatformService } from 'src/app/core/services/platform/platform.service';
-import { PlatformDto } from 'src/app/models/platform/platformDto';
-import { PostAddUpdateDto } from 'src/app/models/post/postDtos';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Subject } from "rxjs";
+import { PlatformService } from "src/app/core/services/platform/platform.service";
+import { PlatformDto } from "src/app/models/platform/platformDto";
+import { PostAddUpdateDto } from "src/app/models/post/postDtos";
 
 @Component({
   selector: 'app-post-form',
@@ -41,5 +41,30 @@ export class PostFormComponent implements OnInit {
 
   onFileSelected(selectedFile: File): void {
     this.postForm.image = selectedFile;
+  }
+
+  validateForm(): boolean {
+    return (
+      this.validateTitle() && this.validateContent() && this.validatePlatforms()
+    );
+  }
+
+  validateTitle(): boolean {
+    if (this.postForm.post.title === undefined) return false;
+    else if (this.postForm.post.title.trim() === '') return false;
+    else if (this.postForm.post.title.length > 2) return true;
+    else return false;
+  }
+
+  validateContent(): boolean {
+    if (this.postForm.post.content === undefined) return false;
+    else if (this.postForm.post.content.trim() === '') return false;
+    else return true;
+  }
+
+  validatePlatforms(): boolean {
+    if (this.postForm.post.platforms === undefined) return false;
+    else if (this.postForm.post.platforms.length === 0) return false;
+    else return true;
   }
 }

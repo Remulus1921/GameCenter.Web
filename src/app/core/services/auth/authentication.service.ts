@@ -1,14 +1,14 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import jwt_decode from 'jwt-decode';
-import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
-import { RoleDto, UserDto } from 'src/app/models/user/userDto';
-import { environment } from 'src/environments/environment';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import jwt_decode from "jwt-decode";
+import { ToastrService } from "ngx-toastr";
+import { Observable } from "rxjs";
+import { RoleDto, UserDto, UserUpdateDto } from "src/app/models/user/userDto";
+import { environment } from "src/environments/environment";
 
-import { JwtAuth } from '../../../models/user/jwtAuth';
-import { Login } from '../../../models/user/login';
-import { Register } from '../../../models/user/register';
+import { JwtAuth } from "../../../models/user/jwtAuth";
+import { Login } from "../../../models/user/login";
+import { Register } from "../../../models/user/register";
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +21,7 @@ export class AuthenticationService {
   grantTheRoleUrl = 'Auth/grant-the-role';
   deleteUserUrl = 'Auth/delete-user';
   userDetailsUrl = 'Auth/user-details';
+  userUpdateUrl = 'Auth/update-user';
   options = { withCredentials: true };
   private tokenExpirationTimer: any = null;
 
@@ -57,10 +58,21 @@ export class AuthenticationService {
     );
   }
 
-  getUserDetails(userEmail: string): Observable<UserDto> {
-    return this.http.get<UserDto>(
+  getUserDetails(userEmail: string): Observable<UserUpdateDto> {
+    return this.http.get<UserUpdateDto>(
       `${environment.apiUrl}/${this.userDetailsUrl}/${userEmail}`
     );
+  }
+
+  updateUser(user: UserUpdateDto): Observable<any> {
+    const headers = new HttpHeaders({
+      Accept: 'text/plain',
+    });
+
+    return this.http.put(`${environment.apiUrl}/${this.userUpdateUrl}`, user, {
+      headers,
+      responseType: 'text',
+    });
   }
 
   grantTheRole(roleDto: RoleDto): Observable<any> {
