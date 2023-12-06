@@ -12,9 +12,10 @@
     <mat-form-field>
       <mat-label>Wybierz kolumnę do filtrowania</mat-label>
       <mat-select [(value)]="selectedColumn">
-        <mat-option value="name">Nazwa gry</mat-option>
-        <mat-option value="gameType">Typ gry</mat-option>
-        <mat-option value="rating">Katwgoria Wiekowa</mat-option>
+        <mat-option value="name">Tytuł</mat-option>
+        <mat-option value="gameType">Gatunek</mat-option>
+        <mat-option value="rating">Kategoria Wiekowa</mat-option>
+        <mat-option value="platforms">Platforma</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -56,6 +57,17 @@
         <mat-header-cell *matHeaderCellDef> Gatunek </mat-header-cell>
         <mat-cell *matCellDef="let element">
           {{ element.gameType }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="platforms">
+        <mat-header-cell *matHeaderCellDef> Platformy </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <ul *ngFor="let platform of element.platforms">
+            <li>
+              {{ platform }}
+            </li>
+          </ul>
         </mat-cell>
       </ng-container>
 

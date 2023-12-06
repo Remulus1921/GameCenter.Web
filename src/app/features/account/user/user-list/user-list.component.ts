@@ -74,7 +74,7 @@ export class UserListComponent implements OnInit {
     this._authService.grantTheRole(roleDto).subscribe(
       () => {
         this.toastr.success('Przyznano rangę ' + roleName, 'Stan użytkownika');
-        this._authService.getUsersList();
+        this.updateUserList();
       },
       (error) => {
         this.toastr.error(error.error, 'Stan użytkownika');
@@ -88,5 +88,9 @@ export class UserListComponent implements OnInit {
 
   isMod(): boolean {
     return this._authService.isMod();
+  }
+
+  isSeeded(user: UserDto): boolean {
+    return user.userEmail === 'admin@demo.com';
   }
 }

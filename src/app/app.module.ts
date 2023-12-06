@@ -11,14 +11,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthenticationInterceptor } from './core/interceptors/interceptor';
 import { MainModule } from './main/main.module';
-import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule,
     MainModule,
     AppRoutingModule,
     HttpClientModule,

@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { MaterialModule } from '../material.module';
 import { LoginModule } from './account/login/login.module';
 import { RegisterModule } from './account/register/register.module';
 import { UserModule } from './account/user/user.module';
@@ -18,7 +17,6 @@ import { PostModule } from './post/post.module';
     CommonModule,
     FeaturesRoutingModule,
     ReactiveFormsModule,
-    MaterialModule,
     LoginModule,
     RegisterModule,
     UserModule,

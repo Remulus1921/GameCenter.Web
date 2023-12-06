@@ -29,16 +29,9 @@ export class RegisterComponent {
       return;
     }
     this.authService.register(registerDto).subscribe(
-      (response) => {
-        if (response.status >= 200 && response.status <= 300) {
-          this.toastr.success(
-            'Zarejestrowano, zaloguj się',
-            'Stan rejestracji'
-          );
-          this.router.navigate(['login']);
-        } else {
-          this.toastr.error(response, 'Stan rejestracji');
-        }
+      () => {
+        this.toastr.success('Zarejestrowano, zaloguj się', 'Stan rejestracji');
+        this.router.navigate(['/login']);
       },
       (error) => {
         console.log(error.error);

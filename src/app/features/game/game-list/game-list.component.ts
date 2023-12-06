@@ -15,7 +15,7 @@ import { Game } from 'src/app/models/game/gameDtos';
 export class GameListComponent implements OnInit {
   title = 'Gry';
   games: Game[] = [];
-  selectedColumn: string = 'title';
+  selectedColumn: string = 'name';
 
   displayedColumns: string[] = [];
   dataSource!: MatTableDataSource<Game>;
@@ -35,6 +35,7 @@ export class GameListComponent implements OnInit {
         'index',
         'title',
         'type',
+        'platforms',
         'rating',
         'image',
         'details',
@@ -46,6 +47,7 @@ export class GameListComponent implements OnInit {
         'index',
         'title',
         'type',
+        'platforms',
         'rating',
         'image',
         'details',
@@ -61,6 +63,7 @@ export class GameListComponent implements OnInit {
         name: game.name,
         gameType: game.gameType,
         rating: game.rating,
+        platforms: game.platforms,
         imageUrl: URL.createObjectURL(createFileFromDto(game.image)),
       }));
       this.dataSource = new MatTableDataSource(this.games);
@@ -90,10 +93,17 @@ export class GameListComponent implements OnInit {
     if (inputElement) {
       const value = inputElement.value.trim().toLowerCase();
       this.dataSource.filter = value;
-
       if (this.dataSource.filterPredicate) {
         this.dataSource.filterPredicate = (data: Game, filter: string) => {
-          return data[this.selectedColumn].toLowerCase().includes(filter);
+          if (this.selectedColumn !== 'platforms') {
+            return data[this.selectedColumn].toLowerCase().includes(filter);
+          } else {
+            let isPlatform = false;
+            data[this.selectedColumn].forEach((platform) => {
+              if (platform.toLowerCase().includes(filter)) isPlatform = true;
+            });
+            return isPlatform;
+          }
         };
       }
     }

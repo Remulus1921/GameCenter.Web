@@ -47,7 +47,7 @@
               class="btn-delete"
               (click)="addToRole('Moderator', element.userEmail)"
             >
-              <mat-icon>delete</mat-icon>
+              <mat-icon>update</mat-icon>
             </button>
           </mat-cell>
         </ng-container>
@@ -63,7 +63,7 @@
                 class="btn-delete"
                 (click)="addToRole('Admin', element.userEmail)"
               >
-                <mat-icon>delete</mat-icon>
+                <mat-icon>update</mat-icon>
               </button>
             </mat-cell>
           </ng-container>
@@ -74,6 +74,7 @@
               <button
                 mat-icon-button
                 class="btn-delete"
+                [disabled]="isSeeded(element)"
                 (click)="deleteUser(element.userEmail)"
               >
                 <mat-icon>delete</mat-icon>

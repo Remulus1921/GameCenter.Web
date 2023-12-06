@@ -31,6 +31,7 @@ export interface GameSmallDto {
   gameType: string;
   rating: string;
   image: FileDto;
+  platforms: string[];
 }
 
 export interface Game {
@@ -39,6 +40,7 @@ export interface Game {
   gameType: string;
   rating: string;
   imageUrl: string;
+  platforms: string[];
 
   [key: string]: any;
 }
